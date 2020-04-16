@@ -85,6 +85,7 @@
 ## Result
 
 [LR, RandomForest, DART in LightGBM and GBDT in XGBoost](./docs/Baseline_and_tree_models.md)
+[Pre-trained Models](https://github.com/oyrx/PHBS_MLF_2019_Project_Models) in a seperated repo.
 
 ## Aknowledgements
 
