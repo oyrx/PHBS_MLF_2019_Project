@@ -23,7 +23,7 @@ Although we have derived a beautiful result (i.e. high accuracy) from gradient b
 <img src="../images/structure.png" width="700" align="center">
 
 * Input→1000→500→250→100→20→2
-* **Dropout** before doing **batch normalization**
+* **Dropout** after doing **batch normalization**
 * Choose **Sigmoid/Tanh/ReLU** as activation function
 
 ### 4) Hyperparameter tuning
