@@ -28,10 +28,10 @@ Although we have derived a beautiful result (i.e. high accuracy) from gradient b
 
 ### 4) Hyperparameter tuning
 
-It is a binary classification task, so we use **cross-entropy** as our loss function and apply **early stopping** to avoid over-fitting. Because we use dropout as a tool of regularization, we need to determine the **dropout rate** $dr$. We use Adam as adaptive learning rate method and fix $\beta_1$ and $\beta_2$ by using their default values, but we still need to determine the **learning rate** $lr$. At last, we want to compare the average performance of three kinds of **activation function** (sigmoid, Tanh, ReLU). Hence, there are three kinds of parameters that need to be tuned:
+It is a binary classification task, so we use **cross-entropy** as our loss function and apply **early stopping** to avoid over-fitting. Because we use dropout as a tool of regularization, we need to determine the **dropout rate** *dr*. We use Adam as adaptive learning rate method and fix *beta_1* and *beta_2* by using their default values, but we still need to determine the **learning rate** *lr*. At last, we want to compare the average performance of three kinds of **activation function** (sigmoid, Tanh, ReLU). Hence, there are three kinds of parameters that need to be tuned:
 
-* learning rate $lr$ for Adam: $[0.005, 0.05]$
-* dropout rate $dr$: $[0.2, 0.8]$
+* learning rate *lr* for Adam: *[0.005, 0.05]*
+* dropout rate *dr*: *[0.2, 0.8]*
 * activation function: sigmoid, tanh, ReLU
 
 We use **random search** rather than grid search for hyperparameter tuning —— Randomly select **120** parameter combinations. The result is as follows: 
@@ -44,7 +44,7 @@ The best parameters among these 120 combinations are:
 * dropout rate:  0.260069
 * activation function: ReLU
 
-The corresponding **validation loss** is 0.283972. The **validation accuracy** is 0.870927. From the scatterplot, we can see that ReLU is a better choice for activation function because of its stableness. When dropout rate is high (0.6~0.8), using sigmoid or tanh as activation function will get bad results ($loss \approx 1.0 $). However, ReLU can still provide a small loss and high accuracy in that region.
+The corresponding **validation loss** is 0.283972. The **validation accuracy** is 0.870927. From the scatterplot, we can see that ReLU is a better choice for activation function because of its stableness. When dropout rate is high (0.6~0.8), using sigmoid or tanh as activation function will get bad results (loss approx 1.0). However, ReLU can still provide a small loss and high accuracy in that region.
 
 ### 5) Retrain & Test
 
