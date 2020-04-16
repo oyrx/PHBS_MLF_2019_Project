@@ -84,7 +84,7 @@
 
 ## Result
 
-_TBD_
+[LR, RandomForest, DART in LightGBM and GBDT in XGBoost](./docs/Baseline_and_tree_models.md)
 
 ## Aknowledgements
 
