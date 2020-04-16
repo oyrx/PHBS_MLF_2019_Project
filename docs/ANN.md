@@ -18,7 +18,7 @@ Although we have derived a beautiful result (i.e. high accuracy) from gradient b
 
 ### 3) Network structure
 
-<img src="structure.png" width="700">
+<img src="../images/structure.png" width="700" align="center">
 
 * Input→1000→500→250→100→20→2
 * **Dropout** before doing **batch normalization**
@@ -34,7 +34,7 @@ It is a binary classification task, so we use **cross-entropy** as our loss func
 
 We use **random search** rather than grid search for hyperparameter tuning —— Randomly select **120** parameter combinations. The result is as follows: 
 
-<img src="tune.png" width="600">
+<img src="../images/tune.png" width="600" align="center">
 
 The best parameters among these 120 combinations are:
 
@@ -48,13 +48,12 @@ The corresponding **validation loss** is 0.283972. The **validation accuracy** i
 
 At last, we use the hyperparameters from the last step and retrain the model on the whole training data (original training set + validation set). The learning process: 
 
-<img src="retrain.png" width="600">
+<img src="../images/retrain.png" width="600" align="center">
 
 The test loss is  about 0.280 and test accuracy is about 0.875. Other performance metrics on test set:
 
-<img src="pmetrics.png" width="500">
+<img src="../images/pmetrics.png" width="500" align="center">
 
 ### 5) Summary
 
-
-
+In this task, it seems that deep learning model can not beat the gradient boosting method. There are some possible reasons. First, we know that deep learning model is more powerful when dealing with unstructured data such as images and text by extracting meaningful representations. However, in this task, all data is structured. Second, in such context, deep learning models need to adjust more parameters in order to get a better result. Among all the hyperparameters, the network structure is very important. However, due to insufficient computing power, we fixed the network structure in advance. Therefore, we may be trapped in a bad network structure.
