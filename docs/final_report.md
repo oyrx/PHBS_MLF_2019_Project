@@ -61,7 +61,9 @@ Because the data set owner has done preliminary data cleaning work, the data set
 5. **Deep learning model**. Although we have derived a nice result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. We choose to use a simple feed-forward neural network as our deep learning model. We fix the network structure in advance and do some hyperparameter tuning to find whether it is possible to get a better result.
 6. **Conclusion**
 
-## 4 Baseline and tree-based models
+## 4 Data exploration
+
+## 5 Baseline and tree-based models
 
 ### 1) Logistic Regression (baseline_1)
 
@@ -207,3 +209,4 @@ Test(accuracy): 89.614%
 
 <div align="center"><img src="../images/LightGBM_feature_importance.jpg"></div>
 
+## 6 Deep learning model
