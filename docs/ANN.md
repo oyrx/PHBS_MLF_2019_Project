@@ -54,6 +54,6 @@ The test loss is  about 0.280 and test accuracy is about 0.875. Other performanc
 
 <img src="../images/pmetrics.png" width="500" align="center">
 
-### 5) Summary
+### 6) Summary
 
-In this task, it seems that deep learning model can not beat the gradient boosting method. There are some possible reasons. First, we know that deep learning model is more powerful when dealing with unstructured data such as images and text by extracting meaningful representations. However, in this task, all data is structured. Second, in such context, deep learning models need to adjust more parameters in order to get a better result. Among all the hyperparameters, the network structure is very important. However, due to insufficient computing power, we fixed the network structure in advance. Therefore, we may be trapped in a bad network structure.
+In this task, it seems that **deep learning model can not beat the gradient boosting method**. There are some possible reasons. First, we know that deep learning model is more powerful when dealing with **unstructured data** such as images and text by extracting meaningful representations. However, in this task, all data is structured. Second, in such context, deep learning models need to adjust **more parameters** in order to get a better result. Among all the hyperparameters, the network structure is very important. However, due to insufficient computing power, **we fixed the network structure in advance**. Therefore, we may be trapped in a bad network structure at the beginning.
