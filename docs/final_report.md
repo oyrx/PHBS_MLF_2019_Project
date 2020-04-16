@@ -50,7 +50,6 @@ Because the data set owner has done preliminary data cleaning work, the data set
 - Fill the na value of the children factor. Considering that the children and babies factor have a small difference and the vacancy values of the children field are very few, they are filled directly with the babie field
 
 - The other fields with vacant values are all categorical fields. Here we want to retain as many features as possible, so fill in the vacant values as **'undefined'** and do not delete them.
-- 
 
 ## 3 Overall process
 
