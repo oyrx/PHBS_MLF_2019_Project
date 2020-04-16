@@ -58,5 +58,5 @@ Because the data set owner has done preliminary data cleaning work, the data set
 2. **Identify the problem**. Taking into account the hotel booking time, whether to cancel the order is of great significance to the hotel or the user. At the same time, the cancellation of the predetermined behavior and other variables in the data set have a causal relationship, so we determine the research direction to determine whether the user cancels the order,
 3. **Data exploration**. Correlation analysis of data and feature engineering processing of data sets using pca method.
 4. **Classical model (tree based)**. In this section, initially, we'll start with two classical baseline models, logistic regression and randomforest with default parameter, and then use boosting techniques to improve the performance of tree-based models in two efficient modern frameworks, LightGBM and XGBoost.
-5. **Deep learning model** (Simple ANN).
+5. **Deep learning model**. Although we have derived a nice result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. We choose to use a simple feed-forward neural network as our deep learning model. We fix the network structure in advance and do some hyperparameter tuning to find whether it is possible to get a better result.
 6. **Conclusion**
