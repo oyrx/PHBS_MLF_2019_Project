@@ -80,7 +80,7 @@ Then, apply [regularization and other constraints](https://lightgbm.readthedocs.
 
 In order to improve computational performance, sub-sampling and limited cross validation folds are consecutively applied in the whole process.
 
-<div align="center"><img src="../models/LightGBM_04161347_cvresult.png"></div>
+<div align="center"><img src="https://github.com/oyrx/PHBS_MLF_2019_Project/raw/master/images/LGBM_04151629.jpg"></div>
 
 \* _Parameters ange were selected on previous training results and not continouous._
 
@@ -116,7 +116,9 @@ Implementation and tuning are similar to LightGBM though caterical features in n
 | **Precision** | 0.80 |0.89 |0.90 |0.89 |
 | **Recall** |0.79 |0.89 |0.90 |0.89 |
 | **F1-score** | 0.79 |0.89 | 0.90|0.89 |
-| **Parameters** | `{'boosting': 'DART', 'feature_fraction': 0.7, 'lambda_l2': 0.1, 'max_depth': 25, 'min_split_gain': 0.1, 'n_estimators': 3000, 'num_leaves': 100, 'objective': 'binary'}` | `{'n_estimators': '100', 'max_depth': 25, 'random_state' : 0, 'bootstrap': True}` | `{'boosting': 'DART', 'feature_fraction': 0.7, 'lambda_l2': 0.1, 'max_depth': 25, 'min_split_gain': 0.1, 'n_estimators': 3000, 'num_leaves': 100, 'objective': 'binary'}` | `{'colsample_bytree': 0.7, 'max_depth': 50, 'n_estimators': 100, 'reg_alpha': 1.3, 'reg_lambda': 1.1, 'subsample': 0.9}`| \* _Abbr. for Gradient Boosted Decision Trees_  
+| **Parameters** | `{'boosting': 'DART', 'feature_fraction': 0.7, 'lambda_l2': 0.1, 'max_depth': 25, 'min_split_gain': 0.1, 'n_estimators': 3000, 'num_leaves': 100, 'objective': 'binary'}` | `{'n_estimators': '100', 'max_depth': 25, 'random_state' : 0, 'bootstrap': True}` | `{'boosting': 'DART', 'feature_fraction': 0.7, 'lambda_l2': 0.1, 'max_depth': 25, 'min_split_gain': 0.1, 'n_estimators': 3000, 'num_leaves': 100, 'objective': 'binary'}` | `{'colsample_bytree': 0.7, 'max_depth': 50, 'n_estimators': 100, 'reg_alpha': 1.3, 'reg_lambda': 1.1, 'subsample': 0.9}`|
+
+\* _Abbr. for Gradient Boosted Decision Trees_  
 \* _Small n_estimators in Random Forest on purpose._
 
 **Metric Report and Confusion Matrix of Best Model**
@@ -132,7 +134,7 @@ Test(accuracy): 89.614%
 |macro avg|0.89|0.88|0.89|23878|
 |weighted avg|0.90|0.90|0.90|23878|
 
-<div align="center"><img src="../models/LightGBM_04161347.png"></div>
+<div align="center"><img src="https://github.com/oyrx/PHBS_MLF_2019_Project/raw/master/images/LightGBM_04161347.png"></div>
 
 **Tree Based Model Plot of Best Model**  
 ![TreeLightGBM](../images/LighGBM_small.png)  
