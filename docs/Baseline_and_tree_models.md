@@ -80,7 +80,7 @@ Then, apply [regularization and other constraints](https://lightgbm.readthedocs.
 
 In order to improve computational performance, sub-sampling and limited cross validation folds are consecutively applied in the whole process.
 
-<div align="center"><img src="https://github.com/oyrx/PHBS_MLF_2019_Project/raw/master/images/LightGBM_04161347_cvresult.jpg"></div>
+<div align="center"><img src="https://github.com/oyrx/PHBS_MLF_2019_Project/raw/master/images/LightGBM_04161347_cvresult.png"></div>
 
 \* _Parameters ange were selected on previous training results and not continouous._
 
