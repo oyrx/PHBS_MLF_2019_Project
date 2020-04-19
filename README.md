@@ -72,7 +72,7 @@
 
 ## Result
 
-### [Final Report](./docs/Final_report.md)
+### [Final Report](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/docs/final_report.md)
 
 Accuracy of all models:
 | Accuracy | Logistic Regression | Random Forest | LightGBM (DART) | XGBoost (GBDT) | ANN |
