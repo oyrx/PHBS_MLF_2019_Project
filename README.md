@@ -4,7 +4,7 @@
 
 ## Members
 
-| Name                                            | SID        |
+| Group 13                                        | SID        |
 | ----------------------------------------------- | ---------- |
 | [Jingwei Gao](https://github.com/LobbyBoy-Dray) | 1801213126 |
 | [Simon SHEN](https://github.com/Simon9511)      | 1801212832 |
@@ -19,8 +19,6 @@
 | **Data**             | [Hotel booking demand](https://www.kaggle.com/jessemostipak/hotel-booking-demand) on Kaggle                                                                                                                                                                                |
 | **Data File**        | hotel_bookings.csv                                                                                                                                                                                                                                                         |
 | **Data Description** | This data set contains booking information for a city hotel and a resort hotel, and includes information such as when the booking was made, length of stay, the number of adults, children, and/or babies, and the number of available parking spaces, among other things. |
-
-**🔽 Click items below to show embedded details:**
 
 <details>
 <summary>Target variable</summary>
@@ -64,11 +62,47 @@
 
 </details>
 
-## Project Structure
+## Models
+
+- Logistic Regression
+- Random Forest
+- Dart in LightGBM
+- GBDT in XGBoost
+- ANN
+
+## Result
+
+### [Final Report](./docs/Final_report.md)
+
+Accuracy of all models:
+| Accuracy | Logistic Regression | Random Forest | LightGBM (DART) | XGBoost (GBDT) | ANN |
+| ------------------- | ------------------- | ------------- | --------------- | -------------- | ----- |
+| **Test** | 0.79433 | 0.8925 | 0.89614 | 0.89404 | 0.875 |
+
+- [Baseline and Tree-based Models](./docs/Baseline_and_tree_models.md)  
+  Accuracy of baseline and tree-based models:
+
+  | Metrics              | Logistic Regression | Random Forest | LightGBM (DART) | XGBoost (GBDT) |
+  | -------------------- | ------------------- | ------------- | --------------- | -------------- |
+  | **Accuracy (Train)** | 0.79377             | 0.97796       | 0.98896         | 0.99574        |
+  | **Accuracy (Test)**  | 0.79433             | 0.8925        | 0.89614         | 0.89404        |
+  | **Precision**        | 0.80                | 0.89          | 0.90            | 0.89           |
+  | **Recall**           | 0.79                | 0.89          | 0.90            | 0.89           |
+  | **F1-score**         | 0.79                | 0.89          | 0.90            | 0.89           |
+
+- [ANN](./docs/ANN.md)  
+   <img src="./images/retrain.png" width="600" align="center">
+
+### [Pre-trained Models](https://github.com/oyrx/PHBS_MLF_2019_Project_Models)
+
+Dumped models for download.  
+<img src="./images/LighGBM_small.png" width="600" align="center">
+
+## Repo Structure
 
 \- **code\\** _All the Jupyter Notebooks_  
 \- \- **Exploration\*.ipynb** _Prepocessing and EDA_  
-\- \- **Modelling\*.ipynb** _Modelling, LightGBM, XGBoost,and Neutral Networks_  
+\- \- **Modelling\*.ipynb** _Modelling, LightGBM, XGBoost,and Neural Networks_  
 \- **data\\** _Data_  
 \- \- **feature_description.csv** _Description of each feature_  
 \- \- **hotel_booking_cleaned.csv** _Cleand full dataset_  
@@ -81,11 +115,6 @@
 \- **[models](https://github.com/oyrx/PHBS_MLF_2019_Project_Models)\\** _Pre-trained Models in a seperated repo._  
 \- \- \.\.\.  
 \- **Report.pdf** _Final report_
-
-## Result
-
-[LR, RandomForest, DART in LightGBM and GBDT in XGBoost](./docs/Baseline_and_tree_models.md)
-[Pre-trained Models](https://github.com/oyrx/PHBS_MLF_2019_Project_Models) in a seperated repo.
 
 ## Aknowledgements
 
