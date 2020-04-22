@@ -1,12 +1,43 @@
 # Cancel or not? Predictive Analysis for Hotel Booking Data
 
-[TOC]
+<!-- TOC -->
+
+- [Cancel or not? Predictive Analysis for Hotel Booking Data](#cancel-or-not-predictive-analysis-for-hotel-booking-data)
+  - [Task and Significance](#task-and-significance)
+  - [Data Exploration](#data-exploration)
+    - [Feature with meaning](#feature-with-meaning)
+    - [Correlations and PCA](#correlations-and-pca)
+      - [Cramer's V model](#cramers-v-model)
+      - [Numerical features's correlations](#numerical-featuress-correlations)
+      - [PCA analysis on categorical features](#pca-analysis-on-categorical-features)
+  - [Data Cleaning](#data-cleaning)
+  - [Baseline and tree-based models](#baseline-and-tree-based-models)
+    - [Methodology](#methodology)
+      - [What is GBDT and DART?](#what-is-gbdt-and-dart)
+      - [Why LightGBM and XGBoost?](#why-lightgbm-and-xgboost)
+    - [Preparation](#preparation)
+    - [Models](#models)
+      - [Baseline: Logistic Regression and Random Forest](#baseline-logistic-regression-and-random-forest)
+      - [DART in LightGBM and GBDT in XGBoost](#dart-in-lightgbm-and-gbdt-in-xgboost)
+    - [Result](#result)
+      - [Results in short](#results-in-short)
+      - [Results in detail](#results-in-detail)
+  - [Deep learning model](#deep-learning-model)
+    - [Toolkit: PyTorch](#toolkit-pytorch)
+    - [Data preprocessing](#data-preprocessing)
+    - [Network structure](#network-structure)
+    - [Hyperparameter tuning](#hyperparameter-tuning)
+    - [Retrain & Test](#retrain--test)
+    - [Summary](#summary)
+  - [Conclusion](#conclusion)
+
+<!-- /TOC -->
 
 Emerging network society issues new challenges on understanding big data in electronic consuming behaviors, as well as in hotel business. Significant differences can be easily found in tremendous reservation records, consisting of time, location, historic characteristics, and so on.
 
 Considering oblivious risks by potential cancellation after reservation, the utilization of hotel booking data can be conducive to optimizing business decisions and strategies, nevertheless, also far from application without quantified nuances behind the topsoils.
 
-## 1. Task and Significance
+## Task and Significance
 
 **Project Task**  
 This project is proposed to use order information of multiple dimensions order to predict whether a specific order will be cancelled or not.
@@ -23,11 +54,11 @@ Before the user cancels the order, it is predicted whether the user will cancel 
 4. **Classical model (tree based)**. In this section, initially, we'll start with two classical baseline models, logistic regression and randomforest with default parameter, and then use boosting techniques to improve the performance of tree-based models in two efficient modern frameworks, LightGBM and XGBoost.
 5. **Deep learning model**. Although we have derived a nice result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. We choose to use a simple feed-forward neural network as our deep learning model. We fix the network structure in advance and do some hyperparameter tuning to find whether it is possible to get a better result.
 
-## 2. Data Exploration
+## Data Exploration
 
 Incongruous exploration on the meanings of features was conducted before formal exploratory analysis.
 
-### 1) Feature with meaning
+### Feature with meaning
 
 - `hotelHotel`: (H1 = Resort Hotel or H2 = City Hotel)
 - `lead_time`: Number of days that elapsed between the entering date of the booking into the PMS and the arrival date
@@ -61,7 +92,7 @@ Incongruous exploration on the meanings of features was conducted before formal 
 - `reservation_status`: Reservation last status, assuming one of three categories: Canceled – booking was canceled by the customer; Check-Out – customer has checked in but already departed; No-Show – customer did not check-in and did inform the hotel of the reason why
 - `reservation_status_date`: Date at which the last status was set. This variable can be used in conjunction with the ReservationStatus to understand when was the booking canceled or when did the customer checked-out of the hotel
 
-### 2) Correlations and PCA
+### Correlations and PCA
 
 With the help of our [manual work](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/Corrleations_And_Feature_Engineering.ipynb) and [pandas_profiling](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/Exploration_Statistics.ipynb), we discern that:
 
@@ -88,7 +119,7 @@ Then we Running labelencoder and onehotencoder to convert to numerical features.
 
 Other details of each feature can be found at [descriptive report](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/docs/Descriptive_Report.html)
 
-## 3. Data Cleaning
+## Data Cleaning
 
 The prediction target of this study is the **is_canceled** indicator (0-1 variable), the data set contains a total of 31 dimensions of information. Among them, all 30 dimensions are discrete variables, and only **adr** (Average Daily Rate) is a continuous variable.
 Because the data set owner has done preliminary data cleaning work, the data set quality is high. After statistics, it is found that there is no need to do too much data cleaning work, only a small amount of vacant values need to be filled. The data cleaning work done this time mainly includes:
@@ -97,11 +128,11 @@ Because the data set owner has done preliminary data cleaning work, the data set
 
 - The other fields with vacant values are all categorical fields. Here we want to retain as many features as possible, so fill in the vacant values as **'undefined'** and do not delete them.
 
-## 4. Baseline and tree-based models
+## Baseline and tree-based models
 
 This section contains two baseline models, LR and Random Forest, and other two moder boosting methods, Dart in LightGBM and GBDT in XGBoost
 
-### 1) Methodology
+### Methodology
 
 #### What is GBDT and DART?
 
@@ -127,7 +158,7 @@ We're curious about the nuances between [level-wise tree growth and leaf-wise tr
 
 Implementation and tuning are similar to LightGBM though caterical features in numeric way is acceptable in XGBoost.
 
-### 2) Preparation
+### Preparation
 
 Based on previously cleaned and splitted datasets, consistent standarization and some extra process were carried out to fit model requirements.
 
@@ -166,7 +197,7 @@ def algorithm_pipeline(model, \
     return fitted_model, y_pred
 ```
 
-### 3) Models
+### Models
 
 #### Baseline: Logistic Regression and Random Forest
 
@@ -192,7 +223,7 @@ With the help of scaffolding, those two modules and one customized grid search f
 
 Models with boosting techniques take the crown with testing accuracy up to 89.61%(DART in LightGBN).
 
-### 4) Result
+### Result
 
 #### Results in short
 
@@ -238,17 +269,19 @@ Test(accuracy): 89.614%
 
 <div align="center"><img src="../images/LightGBM_feature_importance.jpg"></div>
 
-## 5. Deep learning model
+## Deep learning model
 
 > [Colab - Notebook - All codes](https://colab.research.google.com/drive/1TAiVwkV5Eh9kjxE1w9OeJEc1YPGsTrT_)
 
 Although we have derived a beautiful result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. Because there is little information about time series in this data set, we choose to use a simple **feed-forward neural network** as our deep learning model.
 
-### 1) Toolkit: PyTorch <img src="https://pytorch.org/assets/images/pytorch-logo.png" width="30">
+### Toolkit: PyTorch
+
+<img src="https://pytorch.org/assets/images/pytorch-logo.png" width="100">
 
 _PyTorch_ is an open source machine learning library and is widely used in deep learning scenarios for its flexibility. PyTorch uses dynamic computational graphs rather than static graphs, which can be regarded as the mean difference between it and other deep learning frameworks. To get more information on PyTorch, click [here](https://pytorch.org/).
 
-### 2) Data preprocessing
+### Data preprocessing
 
 **Drop some features**: As we did before, two features ("reservation_status_date" & "reservation_status") are dropped for avoidance of leakage. In addition, we drop the feature "arrival_date_year" because we will use future information to predict future cancellation behavior.
 
@@ -256,7 +289,7 @@ _PyTorch_ is an open source machine learning library and is widely used in deep 
 
 **Validation set**: We use 20% data in `train.csv` as our validation data.
 
-### 3) Network structure
+### Network structure
 
 <img src="../images/structure.png" width="700" align="center">
 
@@ -264,7 +297,7 @@ _PyTorch_ is an open source machine learning library and is widely used in deep 
 - **Dropout** after doing **batch normalization**
 - Choose **Sigmoid/Tanh/ReLU** as activation function
 
-### 4) Hyperparameter tuning
+### Hyperparameter tuning
 
 It is a binary classification task, so we use **cross-entropy** as our loss function and apply **early stopping** to avoid over-fitting. Because we use dropout as a tool of regularization, we need to determine the **dropout rate** _dr_. We use Adam as adaptive learning rate method and fix _beta_1_ and _beta_2_ by using their default values, but we still need to determine the **learning rate** _lr_. At last, we want to compare the average performance of three kinds of **activation function** (sigmoid, Tanh, ReLU). Hence, there are three kinds of parameters that need to be tuned:
 
@@ -284,7 +317,7 @@ The best parameters among these 120 combinations are:
 
 The corresponding **validation loss** is 0.283972. The **validation accuracy** is 0.870927. From the scatterplot, we can see that ReLU is a better choice for activation function because of its stableness. When dropout rate is high (0.6~0.8), using sigmoid or tanh as activation function will get bad results (loss approx 1.0). However, ReLU can still provide a small loss and high accuracy in that region.
 
-### 5) Retrain & Test
+### Retrain & Test
 
 At last, we use the hyperparameters from the last step and retrain the model on the whole training data (original training set + validation set). The learning process:
 
@@ -294,7 +327,7 @@ The test loss is about 0.280 and test accuracy is about 0.875. Other performance
 
 <img src="../images/pmetrics.png" width="500" align="center">
 
-### 6) Summary
+### Summary
 
 Results from multifold models, including traditional ML techniques and DL strategies, indicate **the failure of deep learning model** to defeat the gradient boosting methods.
 
@@ -306,6 +339,6 @@ This unanticipated ramification can be ascribed to the following reasons.
 - **Parameter dilemma**  
   Deep learning models need to adjust **more parameters** in order to get better results in such context. Among all the hyperparameters, network structure is quite important, however, due to limited computation capacity **the network structure has to be fixed in advance**. That's to say, a trap of network structure has impeded our progress at the very beginning.
 
-## 6. Conclusion
+## Conclusion
 
 TODO:
