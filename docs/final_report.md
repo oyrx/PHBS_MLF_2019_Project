@@ -1,16 +1,20 @@
 # Cancel or not? Predictive Analysis for Hotel Booking Data
 
-## 1 Background
+Emerging network society issues new challenges on understanding big data in electronic consuming behaviors, as well as in hotel business. Significant differences can be easily found in tremendous reservation records, consisting of time, location, historic characteristics, and so on.
 
-A large number of reservation orders are generated every day on the hotel reservation website, and there are significant differences in the reservation time, reservation location, and number of customers for different orders.
+Considering oblivious risks by potential cancellation after reservation, the utilization of hotel booking data can be conducive to optimizing business decisions and strategies, nevertheless, also far from application without quantified nuances behind the topsoils.
 
-In a large number of orders generated every day, after a part of the order is completed, the end user will not finalize the order and will cancel the order in the middle. This research is mainly to predict the behavior of canceling orders.
+## 1. Task and Significance
 
-**Research purpose**: Through the multi-dimensional information of the order, predict whether different orders will be cancelled.
+**Project Task**  
+This project is proposed to use order information of multiple dimensions order to predict whether a specific order will be cancelled or not.
 
-**Research significance**: Before the user cancels the order, it is predicted whether the user will cancel the order, which is beneficial to the hotel and the reservation website to better allocate resources, improve the true utilization rate of resources, and maximize the revenue. The problem of overselling airline tickets by analog airlines, overselling airline tickets within a reasonable range, helps to achieve a balance between customer efficiency and company revenue, and achieves the most profit without harming the customer experience.
+**Significance**  
+Before the user cancels the order, it is predicted whether the user will cancel the order, which is beneficial to the hotel and the reservation website to better allocate resources, improve the true utilization rate of resources, and maximize the revenue. The problem of overselling airline tickets by analog airlines, overselling airline tickets within a reasonable range, helps to achieve a balance between customer efficiency and company revenue, and achieves the most profit without harming the customer experience.
 
-## 2 Data description & cleaning
+## 2. Data description & cleaning
+
+### Feature with meaning
 
 - `hotelHotel`: (H1 = Resort Hotel or H2 = City Hotel)
 - `lead_time`: Number of days that elapsed between the entering date of the booking into the PMS and the arrival date
@@ -51,7 +55,7 @@ Because the data set owner has done preliminary data cleaning work, the data set
 
 - The other fields with vacant values are all categorical fields. Here we want to retain as many features as possible, so fill in the vacant values as **'undefined'** and do not delete them.
 
-## 3 Overall process
+## 3. Process
 
 1. **Determine the data set**. There are a lot of open source data on kaggle, considering the significance of the topic and the difficulty of prediction, and finally select the hotel prediction topic.
 
@@ -61,40 +65,41 @@ Because the data set owner has done preliminary data cleaning work, the data set
 5. **Deep learning model**. Although we have derived a nice result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. We choose to use a simple feed-forward neural network as our deep learning model. We fix the network structure in advance and do some hyperparameter tuning to find whether it is possible to get a better result.
 6. **Conclusion**
 
-## 4 Data exploration
+## 4. Data exploration
 
-## 5 Baseline and tree-based models
+TODO:
 
-### 1) Logistic Regression (baseline_1)
+## 5. Baseline and tree-based models
 
-Default parameter with `l2` regularization for comparison.
+This section contains two baseline models, LR and Random Forest, and other two moder boosting methods, Dart in LightGBM and GBDT in XGBoost
 
-### 2) Random Forest (baseline_2)
+### Methodology
 
-Default parameter with limited `n_estimators` for comparison.
-
-### 3) GBDT and DART in LightGBM
-
-#### What is GBDT and DART?
+#### 1) What is GBDT and DART?
 
 Gradient Boosted Decision Trees (GBDT) is a machine learning algorithm that iteratively constructs an ensemble of weak decision tree learners through boosting.
 
-#### Why GBDT or DART?
+- For GBDT:
 
-For GBDT:
+  - Feature selection is inherently performed during the learning process
+  - Not prone to collinear/identical features
+  - Models are relatively easy to interpret
+  - Easy to specify different loss functions
 
-- Feature selection is inherently performed during the learning process
-- Not prone to collinear/identical features
-- Models are relatively easy to interpret
-- Easy to specify different loss functions
+- For DART:
+  - Similar to GBDT but [may be more accurate than GBDT](https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html#deal-with-over-fitting)
 
-For DART:
+#### 2) Why LightGBM and XGBoost?
 
-- DART [may be more accurate than GBDT](https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html#deal-with-over-fitting)
+**Why do we deliberately use those two similar, to some extend, boosting framework?** The first reason is that DART, a slightly different method, is also comprised in LightGBM, which would provide diversity for our potential model candidates. Second, XGBoost and LightGBM use discrepent tree growth strategies ( level-wise vs. leaf-wise) and the difference should not been ignored in finding the best hyper-parameters, especially when that level-wise leads to unexpected ramifications like over-fitting is literally a commonplace for professional data-scientists.
 
-#### Why LightGBM?
+<div align="center"><img src="../images/tree_growth.jpg"></div>
 
-#### Preprocessing
+We're curious about the nuances between [level-wise tree growth and leaf-wise tree growth](https://www.analyticsvidhya.com/blog/2017/06/which-algorithm-takes-the-crown-light-gbm-vs-xgboost/), thus, we decide to run both LightGBM and XGBoost.
+
+Implementation and tuning are similar to LightGBM though caterical features in numeric way is acceptable in XGBoost.
+
+### Preprocessing
 
 Based on previously cleaned and splitted datasets, consistent standarization and some extra process were carried out to fit model requirements.
 
@@ -133,45 +138,41 @@ def algorithm_pipeline(model, \
     return fitted_model, y_pred
 ```
 
-#### Parameter Tuning
+### Models
 
-The process of tuning optimized parameter typically complies with latest [manuscript in official docementation](https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html#deal-with-over-fitting).
+#### 1) Baseline: Logistic Regression and Random Forest
 
-First, experiments were conducted to find a generally optimized parameter dict of `num_leaves`, `min_data_in_leaf` and `max_depth`.
+Starting with two baseline models, a logistic regression with l2 regularization and a random forest model with limited n_estimators, we find that a simple logistic regression is literally “not bad” as an approximately 80% accuracy on the testing set and random forest performs much better, scoring 89%.
 
-Second, tuning other paramters to get higher accuracy in both training data and testing data, where slightly over-fitting on testing set is accpetable.
+However, random forest is very slow for training even a single model even with this constrained n_estimators. Heeding the advice from Jingwei Gao, we decide to learn the applications of two modern boosting framework, XGBoost and LightGBM to accelerate parameter tuning process.
 
-Then, apply [regularization and other constraints](https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html#deal-with-over-fitting) to tackle over-fitting.
+#### 2) DART in LightGBM and GBDT in XGBoost
 
-In order to improve computational performance, sub-sampling and limited cross validation folds are consecutively applied in the whole process.
+With the help of scaffolding, those two modules and one customized grid search function, manifold combinations of hyperparameters are efficient tested according to the manuscript in [official docementation](https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html#deal-with-over-fitting) in following process:
+
+- First, experiments were conducted to find a generally optimized parameter dict of num_leaves, min_data_in_leaf and max_depth.
+
+- Second, tuning other paramters to get higher accuracy in both training data and testing data, where slightly over-fitting on testing set is accpetable.
+
+- Then, apply [regularization and other constraints](https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html#deal-with-over-fitting) and other constraints to tackle over-fitting.
+
+- In order to improve computational performance, sub-sampling and limited cross validation folds are consecutively applied in the whole process.
 
 <div align="center"><img src="https://github.com/oyrx/PHBS_MLF_2019_Project/raw/master/images/LightGBM_04161347_cvresult.png"></div>
 
-\* _Parameters ange were selected on previous training results and not continouous._
+\* _Parameters ange were selected on previous training results and not continouous due to limited computation capacity_
 
-### 4) XGBoost
+Models with boosting techniques take the crown with testing accuracy up to 89.61%(DART in LightGBN).
 
-#### What is XGBoost?
+### 5) Result
 
-XGBoost is an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable.
+#### Results in short
 
-#### Why XGBoost?
-
-It provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way.
-
-<div align="center"><img src="../images/tree_growth.jpg"></div>
-
-We're curious about the diffence between [level-wise tree growth and leaf-wise tree growth](https://www.analyticsvidhya.com/blog/2017/06/which-algorithm-takes-the-crown-light-gbm-vs-xgboost/), thus, we decide to run both LightGBM and XGBoost.
-
-Implementation and tuning are similar to LightGBM though caterical features in numeric way is acceptive in XGBoost.
-
-### Result
-
-- A LightGBM Model with accuracy upto approximately 90%()
+- A DART(LightGBM) Model with accuracy upto approximately 90%(89.61%).
 - Manifold predominant features: `lead_time`, `adr`(Average Daily Rate, dividing the sum of all lodging transactions by the total number of staying nights), `arrival_date_day_of_month`, `arrival_date_week_number`, `country`, `agent`, etc., representing characteristics of time, place, actor, laws of normal transactions, and so on.
 - Relatively easy-to-interpretant tree model
 
-### Results in Detail
+#### Results in detail
 
 **Comparison Among Models**
 | | Logistic Regression | Random Forest | LightGBM (DART) | XGBoost (GBDT) |
@@ -209,7 +210,7 @@ Test(accuracy): 89.614%
 
 <div align="center"><img src="../images/LightGBM_feature_importance.jpg"></div>
 
-## 6 Deep learning model
+## 6. Deep learning model
 
 > [Colab - Notebook - All codes](https://colab.research.google.com/drive/1TAiVwkV5Eh9kjxE1w9OeJEc1YPGsTrT_)
 
@@ -219,11 +220,11 @@ Although we have derived a beautiful result (i.e. high accuracy) from gradient b
 
 <img src="https://pytorch.org/assets/images/pytorch-logo.png" width="150">
 
-*PyTorch* is an open source machine learning library and is widely used in deep learning scenarios for its flexibility. PyTorch uses dynamic computational graphs rather than static graphs, which can be regarded as the mean difference between it and other deep learning frameworks. To get more information on PyTorch, click [here](https://pytorch.org/).
+_PyTorch_ is an open source machine learning library and is widely used in deep learning scenarios for its flexibility. PyTorch uses dynamic computational graphs rather than static graphs, which can be regarded as the mean difference between it and other deep learning frameworks. To get more information on PyTorch, click [here](https://pytorch.org/).
 
 ### 2) Data preprocessing
 
-**Drop some features**: As we did before, two features ("reservation_status_date" & "reservation_status") are dropped for avoidance of leakage. In addition, we drop the feature "arrival_date_year" because we will use future information to predict future cancellation behavior. 
+**Drop some features**: As we did before, two features ("reservation_status_date" & "reservation_status") are dropped for avoidance of leakage. In addition, we drop the feature "arrival_date_year" because we will use future information to predict future cancellation behavior.
 
 **One-hot encoding**: One-hot encoder is used to convert categorical data into integer data. Since there are many categories under "company" and "agent", data's dimension increases to 1025 after the one-hot encoding.
 
@@ -233,41 +234,52 @@ Although we have derived a beautiful result (i.e. high accuracy) from gradient b
 
 <img src="../images/structure.png" width="700" align="center">
 
-* Input→1000→500→250→100→20→2
-* **Dropout** after doing **batch normalization**
-* Choose **Sigmoid/Tanh/ReLU** as activation function
+- Input→1000→500→250→100→20→2
+- **Dropout** after doing **batch normalization**
+- Choose **Sigmoid/Tanh/ReLU** as activation function
 
 ### 4) Hyperparameter tuning
 
-It is a binary classification task, so we use **cross-entropy** as our loss function and apply **early stopping** to avoid over-fitting. Because we use dropout as a tool of regularization, we need to determine the **dropout rate** *dr*. We use Adam as adaptive learning rate method and fix *beta_1* and *beta_2* by using their default values, but we still need to determine the **learning rate** *lr*. At last, we want to compare the average performance of three kinds of **activation function** (sigmoid, Tanh, ReLU). Hence, there are three kinds of parameters that need to be tuned:
+It is a binary classification task, so we use **cross-entropy** as our loss function and apply **early stopping** to avoid over-fitting. Because we use dropout as a tool of regularization, we need to determine the **dropout rate** _dr_. We use Adam as adaptive learning rate method and fix _beta_1_ and _beta_2_ by using their default values, but we still need to determine the **learning rate** _lr_. At last, we want to compare the average performance of three kinds of **activation function** (sigmoid, Tanh, ReLU). Hence, there are three kinds of parameters that need to be tuned:
 
-* learning rate *lr* for Adam: *[0.005, 0.05]*
-* dropout rate *dr*: *[0.2, 0.8]*
-* activation function: sigmoid, tanh, ReLU
+- learning rate _lr_ for Adam: _[0.005, 0.05]_
+- dropout rate _dr_: _[0.2, 0.8]_
+- activation function: sigmoid, tanh, ReLU
 
-We use **random search** rather than grid search for hyperparameter tuning —— Randomly select **120** parameter combinations. The result is as follows: 
+We use **random search** rather than grid search for hyperparameter tuning —— Randomly select **120** parameter combinations. The result is as follows:
 
 <img src="../images/tune.png" width="600" align="center">
 
 The best parameters among these 120 combinations are:
 
-* learning rate: 0.00867688
-* dropout rate:  0.260069
-* activation function: ReLU
+- learning rate: 0.00867688
+- dropout rate: 0.260069
+- activation function: ReLU
 
 The corresponding **validation loss** is 0.283972. The **validation accuracy** is 0.870927. From the scatterplot, we can see that ReLU is a better choice for activation function because of its stableness. When dropout rate is high (0.6~0.8), using sigmoid or tanh as activation function will get bad results (loss approx 1.0). However, ReLU can still provide a small loss and high accuracy in that region.
 
 ### 5) Retrain & Test
 
-At last, we use the hyperparameters from the last step and retrain the model on the whole training data (original training set + validation set). The learning process: 
+At last, we use the hyperparameters from the last step and retrain the model on the whole training data (original training set + validation set). The learning process:
 
 <img src="../images/retrain.png" width="600" align="center">
 
-The test loss is  about 0.280 and test accuracy is about 0.875. Other performance metrics on test set:
+The test loss is about 0.280 and test accuracy is about 0.875. Other performance metrics on test set:
 
 <img src="../images/pmetrics.png" width="500" align="center">
 
 ### 6) Summary
 
-In this task, it seems that **deep learning model can not beat the gradient boosting method**. There are some possible reasons. First, we know that deep learning model is more powerful when dealing with **unstructured data** such as images and text by extracting meaningful representations. However, in this task, all data is structured. Second, in such context, deep learning models need to adjust **more parameters** in order to get a better result. Among all the hyperparameters, the network structure is very important. However, due to insufficient computing power, **we fixed the network structure in advance**. Therefore, we may be trapped in a bad network structure at the beginning.
+Results from multifold models, including traditional ML techniques and DL strategies, indicate **the failure of deep learning model** to defeat the gradient boosting methods.
 
+This unanticipated ramification can be ascribed to the following reasons.
+
+- **Misplaced advantages**  
+  It's commonplace that a deep learning model is more efficient dealing with **unstructured data** such as images and text by extracting meaningful representations. However, all the data here is highly structured, which creates convenience for conventional models.
+
+- **Parameter dilemma**  
+  Deep learning models need to adjust **more parameters** in order to get better results in such context. Among all the hyperparameters, network structure is quite important, however, due to limited computation capacity **the network structure has to be fixed in advance**. That's to say, a trap of network structure has impeded our progress at the very beginning.
+
+## Conclusion
+
+TODO:
