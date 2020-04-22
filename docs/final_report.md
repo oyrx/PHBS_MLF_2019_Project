@@ -1,5 +1,7 @@
 # Cancel or not? Predictive Analysis for Hotel Booking Data
 
+[TOC]
+
 Emerging network society issues new challenges on understanding big data in electronic consuming behaviors, as well as in hotel business. Significant differences can be easily found in tremendous reservation records, consisting of time, location, historic characteristics, and so on.
 
 Considering oblivious risks by potential cancellation after reservation, the utilization of hotel booking data can be conducive to optimizing business decisions and strategies, nevertheless, also far from application without quantified nuances behind the topsoils.
@@ -12,11 +14,20 @@ This project is proposed to use order information of multiple dimensions order t
 **Significance**  
 Before the user cancels the order, it is predicted whether the user will cancel the order, which is beneficial to the hotel and the reservation website to better allocate resources, improve the true utilization rate of resources, and maximize the revenue. The problem of overselling airline tickets by analog airlines, overselling airline tickets within a reasonable range, helps to achieve a balance between customer efficiency and company revenue, and achieves the most profit without harming the customer experience.
 
+**Process**
+
+1. **Determine the data set**. There are a lot of open source data on kaggle, considering the significance of the topic and the difficulty of prediction, and finally select the hotel prediction topic.
+
+2. **Identify the problem**. Taking into account the hotel booking time, whether to cancel the order is of great significance to the hotel or the user. At the same time, the cancellation of the predetermined behavior and other variables in the data set have a causal relationship, so we determine the research direction to determine whether the user cancels the order,
+3. **Data exploration**. Correlation analysis of data and feature engineering processing of data sets using pca method.
+4. **Classical model (tree based)**. In this section, initially, we'll start with two classical baseline models, logistic regression and randomforest with default parameter, and then use boosting techniques to improve the performance of tree-based models in two efficient modern frameworks, LightGBM and XGBoost.
+5. **Deep learning model**. Although we have derived a nice result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. We choose to use a simple feed-forward neural network as our deep learning model. We fix the network structure in advance and do some hyperparameter tuning to find whether it is possible to get a better result.
+
 ## 2. Data Exploration
 
 Incongruous exploration on the meanings of features was conducted before formal exploratory analysis.
 
-### Feature with meaning
+### 1) Feature with meaning
 
 - `hotelHotel`: (H1 = Resort Hotel or H2 = City Hotel)
 - `lead_time`: Number of days that elapsed between the entering date of the booking into the PMS and the arrival date
@@ -50,11 +61,11 @@ Incongruous exploration on the meanings of features was conducted before formal 
 - `reservation_status`: Reservation last status, assuming one of three categories: Canceled – booking was canceled by the customer; Check-Out – customer has checked in but already departed; No-Show – customer did not check-in and did inform the hotel of the reason why
 - `reservation_status_date`: Date at which the last status was set. This variable can be used in conjunction with the ReservationStatus to understand when was the booking canceled or when did the customer checked-out of the hotel
 
-### Correlations and PCA
+### 2) Correlations and PCA
 
 With the help of our [manual work](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/Corrleations_And_Feature_Engineering.ipynb) and [pandas_profiling](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/Exploration_Statistics.ipynb), we discern that:
 
-### 1) Cramer's V model
+#### Cramer's V model
 
 _Cramer's V model_ based on the chi squared satistic that can show how strongly nominal variables are associated with one another. This is very similar to correlation coefficient where 0 means no linear correlation and 1 means strong linear correlation.
 
@@ -62,13 +73,13 @@ _Cramer's V model_ based on the chi squared satistic that can show how strongly 
 
 **Results**: "deposit_type" showed the highest correlation with the target variable. The reservation_status_date effect was already looked at in the previous section where we saw an intersting trend that people cancel less during the winter time.
 
-### 2) Numerical features's correlations
+#### Numerical features's correlations
 
 **Drop some features**: re-convert "is_canceled" attribute to numerical values.
 
 **Results**: both lead_time and total_of_special_requests had the strongest linear correlations with is_canceled target variable.
 
-### 3) PCA analysis on categorical features
+#### PCA analysis on categorical features
 
 **OneHotEncoding**: To convert categorical features to numerical ones using Scikit-learn. This requires running integer encoding first follwed by OneHotEncoding.
 Then we Running labelencoder and onehotencoder to convert to numerical features.
@@ -86,22 +97,13 @@ Because the data set owner has done preliminary data cleaning work, the data set
 
 - The other fields with vacant values are all categorical fields. Here we want to retain as many features as possible, so fill in the vacant values as **'undefined'** and do not delete them.
 
-## 4. Process
-
-1. **Determine the data set**. There are a lot of open source data on kaggle, considering the significance of the topic and the difficulty of prediction, and finally select the hotel prediction topic.
-
-2. **Identify the problem**. Taking into account the hotel booking time, whether to cancel the order is of great significance to the hotel or the user. At the same time, the cancellation of the predetermined behavior and other variables in the data set have a causal relationship, so we determine the research direction to determine whether the user cancels the order,
-3. **Data exploration**. Correlation analysis of data and feature engineering processing of data sets using pca method.
-4. **Classical model (tree based)**. In this section, initially, we'll start with two classical baseline models, logistic regression and randomforest with default parameter, and then use boosting techniques to improve the performance of tree-based models in two efficient modern frameworks, LightGBM and XGBoost.
-5. **Deep learning model**. Although we have derived a nice result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. We choose to use a simple feed-forward neural network as our deep learning model. We fix the network structure in advance and do some hyperparameter tuning to find whether it is possible to get a better result.
-
-## 5. Baseline and tree-based models
+## 4. Baseline and tree-based models
 
 This section contains two baseline models, LR and Random Forest, and other two moder boosting methods, Dart in LightGBM and GBDT in XGBoost
 
-### Methodology
+### 1) Methodology
 
-#### 1) What is GBDT and DART?
+#### What is GBDT and DART?
 
 Gradient Boosted Decision Trees (GBDT) is a machine learning algorithm that iteratively constructs an ensemble of weak decision tree learners through boosting.
 
@@ -115,17 +117,17 @@ Gradient Boosted Decision Trees (GBDT) is a machine learning algorithm that iter
 - For DART:
   - Similar to GBDT but [may be more accurate than GBDT](https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html#deal-with-over-fitting)
 
-#### 2) Why LightGBM and XGBoost?
+#### Why LightGBM and XGBoost?
 
 **Why do we deliberately use those two similar, to some extend, boosting framework?** The first reason is that DART, a slightly different method, is also comprised in LightGBM, which would provide diversity for our potential model candidates. Second, XGBoost and LightGBM use discrepent tree growth strategies ( level-wise vs. leaf-wise) and the difference should not been ignored in finding the best hyper-parameters, especially when that level-wise leads to unexpected ramifications like over-fitting is literally a commonplace for professional data-scientists.
 
-<div align="center"><img src="../images/tree_growth.jpg"></div>
+<div align="center"><img src="../images/tree_growth.jpg" width="400"></div>
 
 We're curious about the nuances between [level-wise tree growth and leaf-wise tree growth](https://www.analyticsvidhya.com/blog/2017/06/which-algorithm-takes-the-crown-light-gbm-vs-xgboost/), thus, we decide to run both LightGBM and XGBoost.
 
 Implementation and tuning are similar to LightGBM though caterical features in numeric way is acceptable in XGBoost.
 
-### Preprocessing
+### 2) Preparation
 
 Based on previously cleaned and splitted datasets, consistent standarization and some extra process were carried out to fit model requirements.
 
@@ -164,15 +166,15 @@ def algorithm_pipeline(model, \
     return fitted_model, y_pred
 ```
 
-### Models
+### 3) Models
 
-#### 1) Baseline: Logistic Regression and Random Forest
+#### Baseline: Logistic Regression and Random Forest
 
 Starting with two baseline models, a logistic regression with l2 regularization and a random forest model with limited n_estimators, we find that a simple logistic regression is literally “not bad” as an approximately 80% accuracy on the testing set and random forest performs much better, scoring 89%.
 
 However, random forest is very slow for training even a single model even with this constrained n_estimators. Heeding the advice from Jingwei Gao, we decide to learn the applications of two modern boosting framework, XGBoost and LightGBM to accelerate parameter tuning process.
 
-#### 2) DART in LightGBM and GBDT in XGBoost
+#### DART in LightGBM and GBDT in XGBoost
 
 With the help of scaffolding, those two modules and one customized grid search function, manifold combinations of hyperparameters are efficient tested according to the manuscript in [official docementation](https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html#deal-with-over-fitting) in following process:
 
@@ -190,7 +192,7 @@ With the help of scaffolding, those two modules and one customized grid search f
 
 Models with boosting techniques take the crown with testing accuracy up to 89.61%(DART in LightGBN).
 
-### 5) Result
+### 4) Result
 
 #### Results in short
 
@@ -236,7 +238,7 @@ Test(accuracy): 89.614%
 
 <div align="center"><img src="../images/LightGBM_feature_importance.jpg"></div>
 
-## 6. Deep learning model
+## 5. Deep learning model
 
 > [Colab - Notebook - All codes](https://colab.research.google.com/drive/1TAiVwkV5Eh9kjxE1w9OeJEc1YPGsTrT_)
 
@@ -304,6 +306,6 @@ This unanticipated ramification can be ascribed to the following reasons.
 - **Parameter dilemma**  
   Deep learning models need to adjust **more parameters** in order to get better results in such context. Among all the hyperparameters, network structure is quite important, however, due to limited computation capacity **the network structure has to be fixed in advance**. That's to say, a trap of network structure has impeded our progress at the very beginning.
 
-## Conclusion
+## 6. Conclusion
 
 TODO:
