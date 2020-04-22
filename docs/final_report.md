@@ -12,7 +12,9 @@ This project is proposed to use order information of multiple dimensions order t
 **Significance**  
 Before the user cancels the order, it is predicted whether the user will cancel the order, which is beneficial to the hotel and the reservation website to better allocate resources, improve the true utilization rate of resources, and maximize the revenue. The problem of overselling airline tickets by analog airlines, overselling airline tickets within a reasonable range, helps to achieve a balance between customer efficiency and company revenue, and achieves the most profit without harming the customer experience.
 
-## 2. Data description & cleaning
+## 2. Data Exploration
+
+Incongruous exploration on the meanings of features was conducted before formal exploratory analysis.
 
 ### Feature with meaning
 
@@ -48,6 +50,35 @@ Before the user cancels the order, it is predicted whether the user will cancel 
 - `reservation_status`: Reservation last status, assuming one of three categories: Canceled – booking was canceled by the customer; Check-Out – customer has checked in but already departed; No-Show – customer did not check-in and did inform the hotel of the reason why
 - `reservation_status_date`: Date at which the last status was set. This variable can be used in conjunction with the ReservationStatus to understand when was the booking canceled or when did the customer checked-out of the hotel
 
+### Correlations and PCA
+
+With the help of our [manual work](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/Corrleations_And_Feature_Engineering.ipynb) and [pandas_profiling](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/Exploration_Statistics.ipynb), we discern that:
+
+### 1) Cramer's V model
+
+_Cramer's V model_ based on the chi squared satistic that can show how strongly nominal variables are associated with one another. This is very similar to correlation coefficient where 0 means no linear correlation and 1 means strong linear correlation.
+
+**Drop some features**: As we did before, two features ("reservation_status_date" & "reservation_status") are dropped for avoidance of leakage. In addition, we drop the feature "arrival_date_year" because we will use future information to predict future cancellation behavior.
+
+**Results**: "deposit_type" showed the highest correlation with the target variable. The reservation_status_date effect was already looked at in the previous section where we saw an intersting trend that people cancel less during the winter time.
+
+### 2) Numerical features's correlations
+
+**Drop some features**: re-convert "is_canceled" attribute to numerical values.
+
+**Results**: both lead_time and total_of_special_requests had the strongest linear correlations with is_canceled target variable.
+
+### 3) PCA analysis on categorical features
+
+**OneHotEncoding**: To convert categorical features to numerical ones using Scikit-learn. This requires running integer encoding first follwed by OneHotEncoding.
+Then we Running labelencoder and onehotencoder to convert to numerical features.
+
+**Results**: the principal component 1 holds 44.2% of the information while the principal component 2 holds only 32.9% of the information. Summing them up, we will have ~77% of information.we need about 8 components to represent 90% of the dataset.
+
+Other details of each feature can be found at [descriptive report](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/docs/Descriptive_Report.html)
+
+## 3. Data Cleaning
+
 The prediction target of this study is the **is_canceled** indicator (0-1 variable), the data set contains a total of 31 dimensions of information. Among them, all 30 dimensions are discrete variables, and only **adr** (Average Daily Rate) is a continuous variable.
 Because the data set owner has done preliminary data cleaning work, the data set quality is high. After statistics, it is found that there is no need to do too much data cleaning work, only a small amount of vacant values need to be filled. The data cleaning work done this time mainly includes:
 
@@ -55,7 +86,7 @@ Because the data set owner has done preliminary data cleaning work, the data set
 
 - The other fields with vacant values are all categorical fields. Here we want to retain as many features as possible, so fill in the vacant values as **'undefined'** and do not delete them.
 
-## 3. Process
+## 4. Process
 
 1. **Determine the data set**. There are a lot of open source data on kaggle, considering the significance of the topic and the difficulty of prediction, and finally select the hotel prediction topic.
 
@@ -63,11 +94,6 @@ Because the data set owner has done preliminary data cleaning work, the data set
 3. **Data exploration**. Correlation analysis of data and feature engineering processing of data sets using pca method.
 4. **Classical model (tree based)**. In this section, initially, we'll start with two classical baseline models, logistic regression and randomforest with default parameter, and then use boosting techniques to improve the performance of tree-based models in two efficient modern frameworks, LightGBM and XGBoost.
 5. **Deep learning model**. Although we have derived a nice result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. We choose to use a simple feed-forward neural network as our deep learning model. We fix the network structure in advance and do some hyperparameter tuning to find whether it is possible to get a better result.
-6. **Conclusion**
-
-## 4. Data exploration
-
-TODO:
 
 ## 5. Baseline and tree-based models
 
@@ -216,9 +242,7 @@ Test(accuracy): 89.614%
 
 Although we have derived a beautiful result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. Because there is little information about time series in this data set, we choose to use a simple **feed-forward neural network** as our deep learning model.
 
-### 1) Toolkit: PyTorch
-
-<img src="https://pytorch.org/assets/images/pytorch-logo.png" width="150">
+### 1) Toolkit: PyTorch <img src="https://pytorch.org/assets/images/pytorch-logo.png" width="30">
 
 _PyTorch_ is an open source machine learning library and is widely used in deep learning scenarios for its flexibility. PyTorch uses dynamic computational graphs rather than static graphs, which can be regarded as the mean difference between it and other deep learning frameworks. To get more information on PyTorch, click [here](https://pytorch.org/).
 
