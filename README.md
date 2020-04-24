@@ -391,6 +391,7 @@ This project several effective models to predict reservation cancellation. Among
 | Accuracy | Logistic Regression | Random Forest | LightGBM (DART) | XGBoost (GBDT) | ANN |
 | ------------------- | ------------------- | ------------- | --------------- | -------------- | ----- |
 | **Test** | 0.79433 | 0.8925 | 0.89614 | 0.89404 | 0.875 |  
+  
 \* More metrics available previously at [\[1\]](#5.4) [\[2\]](#6.5).
   
 Results from our models also tally our supposition that time, place, actor, laws of normal transactions are killers in predicting such behaviors (`lead_time`, `adr`, `arrival_date_day_of_month`, `arrival_date_week_number`, `country`, `agent`).  
