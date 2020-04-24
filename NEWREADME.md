@@ -6,12 +6,14 @@
 
 ## 0. Team members
 
+<div align='center'>
 | Group 13                                        | SID        |
 | ----------------------------------------------- | ---------- |
 | [Jingwei Gao](https://github.com/LobbyBoy-Dray) | 1801213126 |
 | [Simon SHEN](https://github.com/Simon9511)      | 1801212832 |
 | [Yingjie Jiang](https://github.com/Jason422)    | 1901212596 |
 | [Rongxin Ouyang](https://github.com/oyrx)       | 1801213136 |
+ </div>
 
 ## 1. Project description
 
