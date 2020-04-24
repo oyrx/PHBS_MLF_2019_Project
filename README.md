@@ -255,7 +255,7 @@ Eventually, a modern modelwith boosting techniques, DART in LightGBN, takes the 
 
 #### - Results in detail
 
-**Comparison Among Models**
+**Model Comparison**
 |                      | Logistic Regression                                          | Random Forest                                                | LightGBM (DART)                                              | XGBoost (GBDT)                                               |
 | -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **Accuracy (Train)** | 0.79377                                                      | 0.97796                                                      | 0.98896                                                      | 0.99574                                                      |
@@ -268,7 +268,7 @@ Eventually, a modern modelwith boosting techniques, DART in LightGBN, takes the 
 \* _Abbr. for Gradient Boosted Decision Trees_  
 \* _Small n_estimators in Random Forest on purpose._
 
-**Metric Report and Confusion Matrix of Best Model**
+**Best Model: Confusion Matrix**
 
 Train(accuracy): 98.896%  
 Test(accuracy): 89.614%
@@ -283,9 +283,9 @@ Test(accuracy): 89.614%
 
 <div align="center"><img src="./images/LightGBM_04161347.png"></div>
 
-**Tree Based Model Plot of Best Model**  
+**Best Model: Tree Plot**  
 ![TreeLightGBM](./images/LighGBM_small.png) 
-\* See: [full tree](./images/LightGBM_small.png)
+\* See: [full tree](https://github.com/oyrx/PHBS_MLF_2019_Project/raw/master/images/LighGBM.png)
 
 **Feature importance in Best Model**
 
@@ -357,7 +357,16 @@ At last, we use the hyperparameters from the last step and retrain the model on 
 
 The test loss is  about 0.280 and test accuracy is about 0.875. Other performance metrics on test set:
 
-<div align="center"><img src="./images/pmetrics.png" width="500"></div>
+<!-- <div align="center"><img src="./images/pmetrics.png" width="500"></div> -->
+
+| Value        | precision | recall | f1-score | support |
+| ------------ | --------- | ------ | -------- | ------- |
+| 0            | 0.88      | 0.92   | 0.90     | 15033   |
+| 1            | 0.85      | 0.78   | 0.82     | 8845    |
+| **General**  |           |        |          |         |
+| accuracy     | -         | -      | 0.87     | 23878   |
+| macro avg    | 0.87      | 0.85   | 0.86     | 23878   |
+| weighted avg | 0.87      | 0.87   | 0.87     | 23878   |
 
 <!------------ 6.6 ------------>
 <h3 id="6.6">6) Explainable deep learning model</h3>
@@ -386,7 +395,7 @@ Results from multifold models, including traditional ML techniques and DL strate
 <!------------ 7 ------------>
 <h3 id="7">7. Conclusion</h3>
 
-- This project uses several machine learning models to predict reservation cancellation. Among them, DART in LightGBM beat other competitors with highest testing accuracy (table) and also other metrics.  
+- This project uses several machine learning models to predict reservation cancellation. Among them, DART in LightGBM beats other competitors with highest testing accuracy (table) and also other metrics.  
     
   | Accuracy | Logistic Regression | Random Forest | LightGBM (DART) | XGBoost (GBDT) | ANN |
   | ------------------- | ------------------- | ------------- | --------------- | -------------- | ----- |
