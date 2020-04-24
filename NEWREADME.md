@@ -37,7 +37,7 @@ Emerging network society issues new challenges on understanding big data in elec
 
 Considering oblivious risks by potential cancellation after reservation, the utilization of hotel booking data can be conducive to optimizing business decisions and strategies, nevertheless, also far from application without quantified nuances behind the topsoils.
 
-[Back to contents](#c)
+[- Back to contents -](#c)
 
 <!--------------- 2 --------------->
 <h2 id="2">2. Task, significance and process</h2>
@@ -58,7 +58,7 @@ Considering oblivious risks by potential cancellation after reservation, the uti
 * **Classical model (tree based)**. In this section, initially, we'll start with two classical baseline models, logistic regression and randomforest with default parameter, and then use boosting techniques to improve the performance of tree-based models in two efficient modern frameworks, LightGBM and XGBoost.
 * **Deep learning model**. Although we have derived a nice result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. We choose to use a simple feed-forward neural network as our deep learning model. We fix the network structure in advance and do some hyperparameter tuning to find whether it is possible to get a better result. At last, we use LIME to approximate a local explanation for our DL model.
 
-[Back to contents](#c)
+[- Back to contents -](#c)
 
 <!--------------- 3 --------------->
 <h2 id="3">3. Data exploration</h2>
@@ -114,6 +114,8 @@ With the help of our [manual work](https://github.com/oyrx/PHBS_MLF_2019_Project
   * **Results**: the principal component 1 holds 44.2% of the information while the principal component 2 holds only 32.9% of the information. Summing them up, we will have ~77% of information. We need about 8 components to represent 90% of the dataset.
   * Other details of each feature can be found at [descriptive report](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/docs/Descriptive_Report.html).
 
+[- Back to contents -](#c)
+
 <!--------------- 4 --------------->
 <h2 id="4">4. Data cleaning</h2>
 
@@ -123,6 +125,8 @@ Because the data set owner has done preliminary data cleaning work, the data set
 
 - Fill the na value of the children factor. Considering that the children and babies factor have a small difference and the vacancy values of the children field are very few, they are filled directly with the babie field.
 - The other fields with vacant values are all categorical fields. Here we want to retain as many features as possible, so fill in the vacant values as **'undefined'** and do not delete them.
+
+[- Back to contents -](#c)
 
 <!--------------- 5 --------------->
 <h2 id="5">5. Baseline and tree-based models</h2>
@@ -259,12 +263,14 @@ Test(accuracy): 89.614%
 <div align="center"><img src="./images/LightGBM_04161347.png"></div>
 
 **Tree Based Model Plot of Best Model**  
-![TreeLightGBM](../images/LighGBM_small.png) 
-\* See: [full tree](https://github.com/oyrx/PHBS_MLF_2019_Project/raw/master/images/LightGBM_small.png)
+![TreeLightGBM](./images/LighGBM_small.png) 
+\* See: [full tree](./images/LightGBM_small.png)
 
 **Feature importance in Best Model**
 
 <div align="center"><img src="./images/LightGBM_feature_importance.jpg"></div>
+
+[- Back to contents -](#c)
 
 <!--------------- 6 --------------->
 <h2 id="6">6. Deep learning model</h2>
@@ -346,3 +352,6 @@ Results from multifold models, including traditional ML techniques and DL strate
 - **Misplaced advantages**: It's commonplace that a deep learning model is more efficient dealing with **unstructured data** such as images and text by extracting meaningful representations. However, all the data here is highly structured, which creates convenience for conventional models.
   
 - **Parameter dilemma**: Deep learning models need to adjust **more parameters** in order to get better results in such context. Among all the hyperparameters, network structure is quite important, however, due to limited computation capacity **the network structure has to be fixed in advance**. That's to say, a trap of network structure has impeded our progress at the very beginning.
+
+[- Back to contents -](#c)
+
