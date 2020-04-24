@@ -6,14 +6,12 @@
 
 ## 0. Team members
 
-<div align='center'>
 | Group 13                                        | SID        |
 | ----------------------------------------------- | ---------- |
 | [Jingwei Gao](https://github.com/LobbyBoy-Dray) | 1801213126 |
 | [Simon SHEN](https://github.com/Simon9511)      | 1801212832 |
 | [Yingjie Jiang](https://github.com/Jason422)    | 1901212596 |
 | [Rongxin Ouyang](https://github.com/oyrx)       | 1801213136 |
- </div>
 
 ## 1. Project description
 
@@ -257,7 +255,7 @@ Test(accuracy): 89.614%
 
 ### 1) Toolkit: PyTorch
 
-<img src="https://pytorch.org/assets/images/pytorch-logo.png" width="150">
+<div align="center"><img src="https://pytorch.org/assets/images/pytorch-logo.png" width="150"></div>
 
 *PyTorch* is an open source machine learning library and is widely used in deep learning scenarios for its flexibility. PyTorch uses dynamic computational graphs rather than static graphs, which can be regarded as the mean difference between it and other deep learning frameworks. To get more information on PyTorch, click [here](https://pytorch.org/).
 
@@ -273,7 +271,7 @@ Test(accuracy): 89.614%
 
 ### 3) Network structure
 
-<img src="./images/structure.png" width="700">
+<div align="center"><img src="./images/structure.png" width="700"></div>
 
 * Input→1000→500→250→100→20→2
 * **Dropout** before doing **batch normalization**
@@ -289,7 +287,7 @@ It is a binary classification task, so we use **cross-entropy** as our loss func
 
 We use **random search** rather than grid search for hyperparameter tuning —— Randomly select **120** parameter combinations. The result is as follows: 
 
-<img src="./images/tune.png" width="600">
+<div align="center"><img src="./images/tune.png" width="600"></div>
 
 The best parameters among these 120 combinations are:
 
@@ -303,11 +301,11 @@ The corresponding **validation loss** is 0.283972. The **validation accuracy** i
 
 At last, we use the hyperparameters from the last step and retrain the model on the whole training data (original training set + validation set). The learning process: 
 
-<img src="./images/retrain.png" width="600">
+<div align="center"><img src="./images/retrain.png" width="600"></div>
 
 The test loss is  about 0.280 and test accuracy is about 0.875. Other performance metrics on test set:
 
-<img src="./images/pmetrics.png" width="500">
+<div align="center"><img src="./images/pmetrics.png" width="500"></div>
 
 ### 6) Explainable deep learning model
 
@@ -319,7 +317,7 @@ At last, we want to make this deep learning model explainable in some sense. So 
 4. We choose **logisitic regression** as the simple model to explain the DL model locally —— Train the LR model on 5000 new "training data" in order to **mimic** the DL model's behavior locally. The accuracy is 98.86%.
 5. Finally, we get the coefficients before the numerical variables. It is worth noting that the coefficient before "previous_cancellations" is +6.31 and the coefficient before "required_car_parking_spaces" is -13.9. This result shows the judgment logic of the DL model: people who have cancelled the order before have a higher probability of canceling this order and people who reserved parking spaces are less likely to cancel this order.
 
-<img src="./images/LIME.png" width="500" align="center">
+<div align="center"><img src="./images/LIME.png" width="500" align="center"></div>
 
 ### 7) Summary
 
