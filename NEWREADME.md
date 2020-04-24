@@ -2,9 +2,11 @@
 
 > PHBS_MLF_2019_Project: [Course Link](https://github.com/PHBS/MLF)
 
-[TOC]
+[Team members](#0)
+[Deep learning model](#6)
 
-## 0. Team members
+
+<h2 id="0">0. Team members</h2>
 
 | Group 13                                        | SID        |
 | ----------------------------------------------- | ---------- |
@@ -247,7 +249,7 @@ Test(accuracy): 89.614%
 
 <div align="center"><img src="./images/LightGBM_feature_importance.jpg"></div>
 
-## 6. Deep learning model
+<h2 id="6">6. Deep learning model<\h2>
 
 > [Colab - Notebook - All codes](https://drive.google.com/file/d/1tcqmtkpZdIR0qgnDTeY34Mlj11_x--q-/view?usp=sharing)
 >
