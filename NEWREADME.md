@@ -9,6 +9,7 @@
 * [1) Project description](#1)
 * [2) Task, significance and process](#2)
 * [3) Data exploration](#3)
+  * [Feature with meaning](#3.1)
 * [4) Data cleaning](#4)
 * [5) Baseline and tree-based models](#5)
 * [6) Deep learning model](#6)
@@ -65,7 +66,8 @@ Considering oblivious risks by potential cancellation after reservation, the uti
 
 > Incongruous exploration on the meanings of features was conducted before formal exploratory analysis.
 
-### 1) Feature with meaning
+<!------------ 3.1 ------------>
+<h3 id="3.1">Feature with meaning</h3>
 
 - `hotelHotel`: (H1 = Resort Hotel or H2 = City Hotel)
 - `lead_time`: Number of days that elapsed between the entering date of the booking into the PMS and the arrival date
