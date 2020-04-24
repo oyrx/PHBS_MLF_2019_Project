@@ -281,13 +281,13 @@ Test(accuracy): 89.614%
 | macro avg    | 0.89      | 0.88   | 0.89     | 23878   |
 | weighted avg | 0.90      | 0.90   | 0.90     | 23878   |
 
-<div align="center"><img src="./images/LightGBM_04161347.png"></div>
+<!-- <div align="center"><img src="./images/LightGBM_04161347.png"></div> -->
 
 **Best Model: Tree Plot**  
 ![TreeLightGBM](./images/LighGBM_small.png) 
 \* See: [full tree](https://github.com/oyrx/PHBS_MLF_2019_Project/raw/master/images/LighGBM.png)
 
-**Feature importance in Best Model**
+**Best Model: Feature Importance**
 
 <div align="center"><img src="./images/LightGBM_feature_importance.jpg"></div>
 
