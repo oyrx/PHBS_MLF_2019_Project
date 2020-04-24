@@ -1,6 +1,6 @@
 ## 3.2 ANN
 
-> [Colab - Notebook - All codes](https://colab.research.google.com/drive/1TAiVwkV5Eh9kjxE1w9OeJEc1YPGsTrT_)
+> [Colab - Notebook - All codes](https://drive.google.com/file/d/1tcqmtkpZdIR0qgnDTeY34Mlj11_x--q-/view?usp=sharing)
 
 Although we have derived a beautiful result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. Because there is little information about time series in this data set, we choose to use a simple **feed-forward neural network** as our deep learning model.
 
