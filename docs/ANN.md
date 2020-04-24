@@ -56,7 +56,7 @@ The test loss is  about 0.280 and test accuracy is about 0.875. Other performanc
 
 <img src="../images/pmetrics.png" width="500" align="center">
 
-### 6) Explainable Deep Learning Model
+### 6) Explainable deep learning model
 
 At last, we want to make this deep learning model explainable in some sense. So we try to apply **LIME** ([Local Interpretable Model-agnostic Explanations](https://arxiv.org/pdf/1606.05386.pdf)) on the model we trained above in order to get some hints from the **local explanation**.
 
