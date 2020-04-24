@@ -10,9 +10,23 @@
 * [2) Task, significance and process](#2)
 * [3) Data exploration](#3)
   * [Feature with meaning](#3.1)
+  * [Correlations and PCA](#3.2)
 * [4) Data cleaning](#4)
 * [5) Baseline and tree-based models](#5)
+  * [Methodology](#5.1)
+  * [Preparation](#5.2)
+  * [Models](#5.3)
+  * [Result](#5.4)
 * [6) Deep learning model](#6)
+  * [Toolkit: PyTorch](#6.1)
+  * [Data preprocessing](#6.2)
+  * [Network structure](#6.3)
+  * [Hyperparameter tuning](#6.4)
+  * [Retrain & Test](#6.5)
+  * [Explainable deep learning model](#6.6)
+  * [Summary](#6.7)
+
+
 
 <!--------------- 0 --------------->
 <h2 id="0">0. Team members</h2>
@@ -67,7 +81,7 @@ Considering oblivious risks by potential cancellation after reservation, the uti
 > Incongruous exploration on the meanings of features was conducted before formal exploratory analysis.
 
 <!------------ 3.1 ------------>
-<h3 id="3.1">Feature with meaning</h3>
+<h3 id="3.1">1) Feature with meaning</h3>
 
 - `hotelHotel`: (H1 = Resort Hotel or H2 = City Hotel)
 - `lead_time`: Number of days that elapsed between the entering date of the booking into the PMS and the arrival date
@@ -101,7 +115,8 @@ Considering oblivious risks by potential cancellation after reservation, the uti
 - `reservation_status`: Reservation last status, assuming one of three categories: Canceled – booking was canceled by the customer; Check-Out – customer has checked in but already departed; No-Show – customer did not check-in and did inform the hotel of the reason why
 - `reservation_status_date`: Date at which the last status was set. This variable can be used in conjunction with the ReservationStatus to understand when was the booking canceled or when did the customer checked-out of the hotel
 
-### 2) Correlations and PCA
+<!------------ 3.2 ------------>
+<h3 id="3.2">2) Correlations and PCA</h3>
 
 With the help of our [manual work](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/Corrleations_And_Feature_Engineering.ipynb) and [pandas_profiling](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/Exploration_Statistics.ipynb), we discern that:
 
@@ -135,7 +150,8 @@ Because the data set owner has done preliminary data cleaning work, the data set
 
 > This section contains two baseline models, LR and Random Forest, and other two moder boosting methods, Dart in LightGBM and GBDT in XGBoost.
 
-### 1) Methodology
+<!------------ 5.1 ------------>
+<h3 id="5.1">1) Methodology</h3>
 
 #### - What is GBDT and DART?
 
@@ -161,7 +177,8 @@ We're curious about the nuances between [level-wise tree growth and leaf-wise tr
 
 Implementation and tuning are similar to LightGBM though caterical features in numeric way is acceptable in XGBoost.
 
-### 2) Preparation
+<!------------ 5.2 ------------>
+<h3 id="5.2">2) Preparation</h3>
 
 Based on previously cleaned and splitted datasets, consistent standarization and some extra process were carried out to fit model requirements.
 
@@ -200,7 +217,8 @@ def algorithm_pipeline(model, \
     return fitted_model, y_pred
 ```
 
-### 3) Models
+<!------------ 5.3 ------------>
+<h3 id="5.3">3) Models</h3>
 
 #### - Baseline: Logistic Regression and Random Forest
 
@@ -226,7 +244,8 @@ With the help of scaffolding, those two modules and one customized grid search f
 
 Models with boosting techniques take the crown with testing accuracy up to 89.61%(DART in LightGBN).
 
-### 4) Result
+<!------------ 5.4 ------------>
+<h3 id="5.4">4) Result</h3>
 
 #### - Results in short
 
@@ -281,13 +300,15 @@ Test(accuracy): 89.614%
 >
 > Although we have derived a beautiful result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. Because there is little information about time series in this data set, we choose to use a simple **feed-forward neural network** as our deep learning model.
 
-### 1) Toolkit: PyTorch
+<!------------ 6.1 ------------>
+<h3 id="6.1">1) Toolkit: PyTorch</h3>
 
 <div align="center"><img src="https://pytorch.org/assets/images/pytorch-logo.png" width="150"></div>
 
 *PyTorch* is an open source machine learning library and is widely used in deep learning scenarios for its flexibility. PyTorch uses dynamic computational graphs rather than static graphs, which can be regarded as the mean difference between it and other deep learning frameworks. To get more information on PyTorch, click [here](https://pytorch.org/).
 
-### 2) Data preprocessing
+<!------------ 6.2 ------------>
+<h3 id="6.2">2) Data preprocessing</h3>
 
 **Drop some features**: As we did before, two features ("reservation_status_date" & "reservation_status") are dropped for avoidance of leakage. In addition, we drop the feature "arrival_date_year" because we will use future information to predict future cancellation behavior. We drop the feature "arrival_date_month" because we can get it from the combination of "arrival_date_week_number" and "arrival_date_day_of_month".
 
@@ -297,7 +318,8 @@ Test(accuracy): 89.614%
 
 **Batch size**: 6000.
 
-### 3) Network structure
+<!------------ 6.3 ------------>
+<h3 id="6.3">3) Network structure</h3>
 
 <div align="center"><img src="./images/structure.png" width="700"></div>
 
@@ -305,7 +327,8 @@ Test(accuracy): 89.614%
 * **Dropout** before doing **batch normalization**
 * Choose **Sigmoid/Tanh/ReLU** as activation function
 
-### 4) Hyperparameter tuning
+<!------------ 6.4 ------------>
+<h3 id="6.4">4) Hyperparameter tuning</h3>
 
 It is a binary classification task, so we use **cross-entropy** as our loss function and apply **early stopping** to avoid over-fitting. Because we use dropout as a tool of regularization, we need to determine the **dropout rate** *dr*. We use Adam as adaptive learning rate method and fix *beta_1* and *beta_2* by using their default values, but we still need to determine the **learning rate** *lr*. At last, we want to compare the average performance of three kinds of **activation function** (sigmoid, Tanh, ReLU). Hence, there are three kinds of parameters that need to be tuned:
 
@@ -325,7 +348,8 @@ The best parameters among these 120 combinations are:
 
 The corresponding **validation loss** is 0.283972. The **validation accuracy** is 0.870927. From the scatterplot, we can see that ReLU is a better choice for activation function because of its stableness. When dropout rate is high (0.6~0.8), using sigmoid or tanh as activation function will get bad results (loss approximates 1.0). However, ReLU can still provide a small loss and high accuracy in that region.
 
-### 5) Retrain & Test
+<!------------ 6.5 ------------>
+<h3 id="6.5">5) Retrain & Test</h3>
 
 At last, we use the hyperparameters from the last step and retrain the model on the whole training data (original training set + validation set). The learning process: 
 
@@ -335,7 +359,8 @@ The test loss is  about 0.280 and test accuracy is about 0.875. Other performanc
 
 <div align="center"><img src="./images/pmetrics.png" width="500"></div>
 
-### 6) Explainable deep learning model
+<!------------ 6.6 ------------>
+<h3 id="6.6">6) Explainable deep learning model</h3>
 
 At last, we want to make this deep learning model explainable in some sense. So we try to apply **LIME** ([Local Interpretable Model-agnostic Explanations](https://arxiv.org/pdf/1606.05386.pdf)) on the model we trained above in order to get some hints from the **local explanation**.
 
@@ -347,7 +372,8 @@ At last, we want to make this deep learning model explainable in some sense. So 
 
 <div align="center"><img src="./images/LIME.png" width="500" align="center"></div>
 
-### 7) Summary
+<!------------ 6.7 ------------>
+<h3 id="6.7">7) Summary</h3>
 
 Results from multifold models, including traditional ML techniques and DL strategies, indicate **the failure of deep learning model** to defeat the gradient boosting methods. This unanticipated ramification can be ascribed to the following reasons.
 
