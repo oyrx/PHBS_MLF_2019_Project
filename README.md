@@ -368,7 +368,7 @@ At last, we want to make this deep learning model explainable in some sense. So 
 2. Second, we sample 5000 instances **nearby**. In particular, we fix the value of categorical variables and only do sampling in terms of numerical variables for convenience.
 3. Use DL model to predict the labels of these 5000 sample. After that ,we get 5000 new "**training data**".
 4. We choose **logisitic regression** as the simple model to explain the DL model locally —— Train the LR model on 5000 new "training data" in order to **mimic** the DL model's behavior locally. The accuracy is 98.86%.
-5. Finally, we get the coefficients before the numerical variables. It is worth noting that the coefficient before "previous_cancellations" is +6.31 and the coefficient before "required_car_parking_spaces" is -13.9. This result shows the judgment logic of the DL model: people who have cancelled the order before have a higher probability of canceling this order and people who reserved parking spaces are less likely to cancel this order.
+5. Finally, we get the coefficients before the numerical variables. It is worth noting that the coefficient before "previous_cancellations" is +6.31 and the coefficient before "required_car_parking_spaces" is -13.9. This result shows the judgment logic of the DL model: **people who have cancelled the order before have a higher probability of canceling this order and people who reserved parking spaces are less likely to cancel this order**.
 
 <div align="center"><img src="./images/LIME.png" width="500" align="center"></div>
 
