@@ -5,7 +5,7 @@
 [Team members](#0)
 [Deep learning model](#6)
 
-
+<!--------------- 0 --------------->
 <h2 id="0">0. Team members</h2>
 
 | Group 13                                        | SID        |
@@ -15,7 +15,8 @@
 | [Yingjie Jiang](https://github.com/Jason422)    | 1901212596 |
 | [Rongxin Ouyang](https://github.com/oyrx)       | 1801213136 |
 
-## 1. Project description
+<!--------------- 1 --------------->
+<h2 id="1">Project description</h2>
 
 |       Project        |                           Details                            |
 | :------------------: | :----------------------------------------------------------: |
@@ -28,7 +29,8 @@ Emerging network society issues new challenges on understanding big data in elec
 
 Considering oblivious risks by potential cancellation after reservation, the utilization of hotel booking data can be conducive to optimizing business decisions and strategies, nevertheless, also far from application without quantified nuances behind the topsoils.
 
-## 2. Task, significance and process
+<!--------------- 2 --------------->
+<h2 id="2">Task, significance and process</h2>
 
 **Project Task**  
 
@@ -46,7 +48,8 @@ Considering oblivious risks by potential cancellation after reservation, the uti
 * **Classical model (tree based)**. In this section, initially, we'll start with two classical baseline models, logistic regression and randomforest with default parameter, and then use boosting techniques to improve the performance of tree-based models in two efficient modern frameworks, LightGBM and XGBoost.
 * **Deep learning model**. Although we have derived a nice result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. We choose to use a simple feed-forward neural network as our deep learning model. We fix the network structure in advance and do some hyperparameter tuning to find whether it is possible to get a better result. At last, we use LIME to approximate a local explanation for our DL model.
 
-## 3. Data exploration
+<!--------------- 3 --------------->
+<h2 id="3">Data exploration</h2>
 
 > Incongruous exploration on the meanings of features was conducted before formal exploratory analysis.
 
@@ -99,7 +102,8 @@ With the help of our [manual work](https://github.com/oyrx/PHBS_MLF_2019_Project
   * **Results**: the principal component 1 holds 44.2% of the information while the principal component 2 holds only 32.9% of the information. Summing them up, we will have ~77% of information. We need about 8 components to represent 90% of the dataset.
   * Other details of each feature can be found at [descriptive report](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/docs/Descriptive_Report.html).
 
-## 4. Data cleaning
+<!--------------- 4 --------------->
+<h2 id="4">Data cleaning</h2>
 
 The prediction target of this study is the **is_canceled** indicator (0-1 variable), the data set contains a total of 31 dimensions of information. Among them, all 30 dimensions are discrete variables, and only **adr** (Average Daily Rate) is a continuous variable.
 
@@ -108,7 +112,8 @@ Because the data set owner has done preliminary data cleaning work, the data set
 - Fill the na value of the children factor. Considering that the children and babies factor have a small difference and the vacancy values of the children field are very few, they are filled directly with the babie field.
 - The other fields with vacant values are all categorical fields. Here we want to retain as many features as possible, so fill in the vacant values as **'undefined'** and do not delete them.
 
-## 5. Baseline and tree-based models
+<!--------------- 5 --------------->
+<h2 id="5">Baseline and tree-based models</h2>
 
 > This section contains two baseline models, LR and Random Forest, and other two moder boosting methods, Dart in LightGBM and GBDT in XGBoost.
 
@@ -249,7 +254,8 @@ Test(accuracy): 89.614%
 
 <div align="center"><img src="./images/LightGBM_feature_importance.jpg"></div>
 
-<h2 id="6">6. Deep learning model<\h2>
+<!--------------- 6 --------------->
+<h2 id="6">6. Deep learning model</h2>
 
 > [Colab - Notebook - All codes](https://drive.google.com/file/d/1tcqmtkpZdIR0qgnDTeY34Mlj11_x--q-/view?usp=sharing)
 >
