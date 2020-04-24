@@ -26,8 +26,6 @@
   * [Explainable deep learning model](#6.6)
   * [Summary](#6.7)
 
-
-
 <!--------------- 0 --------------->
 <h2 id="0">0. Team members</h2>
 
@@ -37,6 +35,8 @@
 | [Simon SHEN](https://github.com/Simon9511)      | 1801212832 |
 | [Yingjie Jiang](https://github.com/Jason422)    | 1901212596 |
 | [Rongxin Ouyang](https://github.com/oyrx)       | 1801213136 |
+
+[- Back to contents -](#c)
 
 <!--------------- 1 --------------->
 <h2 id="1">1. Project description</h2>
