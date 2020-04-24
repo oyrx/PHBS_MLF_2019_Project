@@ -25,10 +25,12 @@
   * [Retrain & Test](#6.5)
   * [Explainable deep learning model](#6.6)
   * [Summary](#6.7)
+* [7) Conclusion](#7)
 
 <!--------------- 0 --------------->
-<h2 id="0">0. Team members</h2>
-
+<h2 id="0">0. Team members</h2>  
+Collaborators in this project are graduate students of financial technology and financial journalism from Peking University HSBC Business School:  
+  
 | Group 13                                        | SID        |
 | ----------------------------------------------- | ---------- |
 | [Jingwei Gao](https://github.com/LobbyBoy-Dray) | 1801213126 |
@@ -40,18 +42,16 @@
 
 <!--------------- 1 --------------->
 <h2 id="1">1. Project description</h2>
+  
+Emerging network society issues new challenges on understanding big data in electronic consuming behaviors, as well as in hotel business. Significant differences can be easily found in tremendous reservation records, consisting of time, location, historic characteristics, etc., however, the utilization of hotel booking data can be conducive to optimizing business decisions and strategies but also far from application without quantified nuances behind the topsoils.
 
+In order to explore, disentangle, and predict cancellation behavior, we initialized this project based on a recent and popular dataset on kaggle:  
 |       Project        |                           Details                            |
 | :------------------: | :----------------------------------------------------------: |
 |       **Goal**       | To predict whether a specific hotel booking will be cancelled |
 |       **Data**       | [Hotel booking demand](https://www.kaggle.com/jessemostipak/hotel-booking-demand) on Kaggle |
 |    **Data File**     |                     `hotel_bookings.csv`                     |
 | **Data Description** | This data set contains booking information for a city hotel and a resort hotel, and includes information such as when the booking was made, length of stay, the number of adults, children, and/or babies, and the number of available parking spaces, among other things. |
-
-Emerging network society issues new challenges on understanding big data in electronic consuming behaviors, as well as in hotel business. Significant differences can be easily found in tremendous reservation records, consisting of time, location, historic characteristics, and so on.
-
-Considering oblivious risks by potential cancellation after reservation, the utilization of hotel booking data can be conducive to optimizing business decisions and strategies, nevertheless, also far from application without quantified nuances behind the topsoils.
-
 [- Back to contents -](#c)
 
 <!--------------- 2 --------------->
@@ -78,7 +78,7 @@ Considering oblivious risks by potential cancellation after reservation, the uti
 <!--------------- 3 --------------->
 <h2 id="3">3. Data exploration</h2>
 
-> Incongruous exploration on the meanings of features was conducted before formal exploratory analysis.
+> Exploration on the meanings of features was conducted before formal exploratory analysis.
 
 <!------------ 3.1 ------------>
 <h3 id="3.1">1) Feature with meaning</h3>
@@ -136,9 +136,9 @@ With the help of our [manual work](https://github.com/oyrx/PHBS_MLF_2019_Project
 <!--------------- 4 --------------->
 <h2 id="4">4. Data cleaning</h2>
 
-The prediction target of this study is the **is_canceled** indicator (0-1 variable), the data set contains a total of 31 dimensions of information. Among them, all 30 dimensions are discrete variables, and only **adr** (Average Daily Rate) is a continuous variable.
+Target variable in this study is **is_canceled** (0/1) and features are available from 31 different dimensions. Among them, all 30 dimensions are discrete variables, and only **adr** (Average Daily Rate) is a continuous variable.
 
-Because the data set owner has done preliminary data cleaning work, the data set quality is high. After statistics, it is found that there is no need to do too much data cleaning work, only a small amount of vacant values need to be filled. The data cleaning work done this time mainly includes:
+Thanks to preliminary data cleaning by the owner of data, only a small amount of vacant values need to be filled. More specifically, the data cleaning procedure includes:
 
 - Fill the na value of the children factor. Considering that the children and babies factor have a small difference and the vacancy values of the children field are very few, they are filled directly with the babie field.
 - The other fields with vacant values are all categorical fields. Here we want to retain as many features as possible, so fill in the vacant values as **'undefined'** and do not delete them.
@@ -182,7 +182,7 @@ Implementation and tuning are similar to LightGBM though caterical features in n
 
 Based on previously cleaned and splitted datasets, consistent standarization and some extra process were carried out to fit model requirements.
 
-Fairly significant issue here is datatype. According to the design and implementation of LightGBM, categorical features [should be kept in interger](https://lightgbm.readthedocs.io/en/latest/Advanced-Topics.html#categorical-feature-support), thereby, the process of standarization was divided into two different chunks to relinquish categorial features and then bring them back.
+A fairly significat issue here is datatype. According to the design and implementation of LightGBM, categorical features [should be kept in interger](https://lightgbm.readthedocs.io/en/latest/Advanced-Topics.html#categorical-feature-support), thereby, the process of standarization was divided into two different chunks to relinquish categorial features and then bring them back.
 
 Incidentally, for engineering convinience, we also introduced a redesigned function named "algorithm_pipeline()" to expedite implementation through predefined datasets, fit criteria, and reusable grid search process.
 
@@ -222,13 +222,13 @@ def algorithm_pipeline(model, \
 
 #### - Baseline: Logistic Regression and Random Forest
 
-Starting with two baseline models, a logistic regression with l2 regularization and a random forest model with limited n_estimators, we find that a simple logistic regression is literally “not bad” as an approximately 80% accuracy on the testing set and random forest performs much better, scoring 89%.
+Starting with two baseline models, a logistic regression with l2 regularization and a random forest model with limited n_estimators, we find that a simple logistic regression is literally “not bad” as an approximately 80% accuracy on the testing set and random forest performs much better, scoring at 89%.
 
-However, random forest is very slow for training even a single model even with this constrained n_estimators. Heeding the advice from Jingwei Gao, we decide to learn the applications of two modern boosting framework, XGBoost and LightGBM to accelerate parameter tuning process.
+However, random forest is very slow for training a single model even with highly constrained n_estimators. Heeding the advice from Jingwei Gao, we decide to acquaint the application of two modern boosting framework, XGBoost and LightGBM to accelerate parameter tuning process and improve the ability of generalization.
 
 #### - DART in LightGBM and GBDT in XGBoost
 
-With the help of scaffolding, those two modules and one customized grid search function, manifold combinations of hyperparameters are efficient tested according to the manuscript in [official docementation](https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html#deal-with-over-fitting) in following process:
+With the help of scaffolding, those two modules and one customized grid search function, a lot of combinations of hyperparameters are efficiently tested according to the manuscript in [official docementation](https://lightgbm.readthedocs.io/en/latest/Parameters-Tuning.html#deal-with-over-fitting) in following process:
 
 - First, experiments were conducted to find a generally optimized parameter dict of num_leaves, min_data_in_leaf and max_depth.
 
@@ -242,7 +242,7 @@ With the help of scaffolding, those two modules and one customized grid search f
 
 \* _Parameters ange were selected on previous training results and not continouous due to limited computation capacity_
 
-Models with boosting techniques take the crown with testing accuracy up to 89.61%(DART in LightGBN).
+Eventually, a modern modelwith boosting techniques, DART in LightGBN, takes the crown with testing accuracy up to 89.61%.
 
 <!------------ 5.4 ------------>
 <h3 id="5.4">4) Result</h3>
@@ -380,6 +380,27 @@ Results from multifold models, including traditional ML techniques and DL strate
 - **Misplaced advantages**: It's commonplace that a deep learning model is more efficient dealing with **unstructured data** such as images and text by extracting meaningful representations. However, all the data here is highly structured, which creates convenience for conventional models.
   
 - **Parameter dilemma**: Deep learning models need to adjust **more parameters** in order to get better results in such context. Among all the hyperparameters, network structure is quite important, however, due to limited computation capacity **the network structure has to be fixed in advance**. That's to say, a trap of network structure has impeded our progress at the very beginning.
+
+[- Back to contents -](#c)
+
+<!------------ 7 ------------>
+<h3 id="7">7. Conclusion</h3>
+
+This project several effective models to predict reservation cancellation. Among them, DART in LightGBM beat other competitors with highest testing accuracy (table) and also other metrics.  
+  
+| Accuracy | Logistic Regression | Random Forest | LightGBM (DART) | XGBoost (GBDT) | ANN |
+| ------------------- | ------------------- | ------------- | --------------- | -------------- | ----- |
+| **Test** | 0.79433 | 0.8925 | 0.89614 | 0.89404 | 0.875 |  
+\* More metrics available previously at [\[1\]](#5.4) [\[2\]](#6.5).
+  
+Results from our models also tally our supposition that time, place, actor, laws of normal transactions are killers in predicting such behaviors (`lead_time`, `adr`, `arrival_date_day_of_month`, `arrival_date_week_number`, `country`, `agent`).  
+
+Correspondingly, cancellation issue a hotel may face can be duly tackled by accelerating or rectifying business strategies using our effective and interpretable model.
+
+Learning from the practice and comparison of conventional machine learning models and a slightly overkilling deep learning technique (ANN), we may conclude our expirence as:
+
+**"Deep" is not always the "Jeep".**
+
 
 [- Back to contents -](#c)
 
