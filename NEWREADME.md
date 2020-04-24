@@ -2,15 +2,16 @@
 
 > PHBS_MLF_2019_Project: [Course Link](https://github.com/PHBS/MLF)
 
-## Contents
+<!--------------- contents --------------->
+<h2 id="c">Contents</h2>
 
-* [Team members](#0)
-* [Project description](#1)
-* [Task, significance and process](#2)
-* [Data exploration](#3)
-* [Data cleaning](#4)
-* [Baseline and tree-based models](#5)
-* [Deep learning model](#6)
+* [0) Team members](#0)
+* [1) Project description](#1)
+* [2) Task, significance and process](#2)
+* [3) Data exploration](#3)
+* [4) Data cleaning](#4)
+* [5) Baseline and tree-based models](#5)
+* [6) Deep learning model](#6)
 
 <!--------------- 0 --------------->
 <h2 id="0">0. Team members</h2>
@@ -36,6 +37,8 @@ Emerging network society issues new challenges on understanding big data in elec
 
 Considering oblivious risks by potential cancellation after reservation, the utilization of hotel booking data can be conducive to optimizing business decisions and strategies, nevertheless, also far from application without quantified nuances behind the topsoils.
 
+[Back to contents](#c)
+
 <!--------------- 2 --------------->
 <h2 id="2">2. Task, significance and process</h2>
 
@@ -54,6 +57,8 @@ Considering oblivious risks by potential cancellation after reservation, the uti
 * **Data exploration**. Correlation analysis of data and feature engineering processing of data sets using pca method.
 * **Classical model (tree based)**. In this section, initially, we'll start with two classical baseline models, logistic regression and randomforest with default parameter, and then use boosting techniques to improve the performance of tree-based models in two efficient modern frameworks, LightGBM and XGBoost.
 * **Deep learning model**. Although we have derived a nice result (i.e. high accuracy) from gradient boosting algorithms, we still want to know how the deep learning model performs in this task. We choose to use a simple feed-forward neural network as our deep learning model. We fix the network structure in advance and do some hyperparameter tuning to find whether it is possible to get a better result. At last, we use LIME to approximate a local explanation for our DL model.
+
+[Back to contents](#c)
 
 <!--------------- 3 --------------->
 <h2 id="3">3. Data exploration</h2>
