@@ -56,6 +56,18 @@ The test loss is  about 0.280 and test accuracy is about 0.875. Other performanc
 
 <img src="../images/pmetrics.png" width="500" align="center">
 
-### 6) Summary
+### 6) Explainable Deep Learning Model
+
+At last, we want to make this deep learning model explainable in some sense. So we try to apply **LIME** ([Local Interpretable Model-agnostic Explanations](https://arxiv.org/pdf/1606.05386.pdf)) on the model we trained above in order to get some hints from the **local explanation**.
+
+1. First, we notice that DL model predicts the **21st test instance** as [label 1] with probability distribution [0.00001, 0.99999]. We choose this data point as our "**local point**".
+2. Second, we sample 5000 instances **nearby**. In particular, we fix the value of categorical variables and only do sampling in terms of numerical variables for convenience.
+3. Use DL model to predict the labels of these 5000 sample. After that ,we get 5000 new "**training data**".
+4. We choose **logisitic regression** as the simple model to explain the DL model locally —— Train the LR model on 5000 new "training data" in order to **mimic** the DL model's behavior locally. The accuracy is 98.86%.
+5. Finally, we get the coefficients before the numerical variables. It is worth noting that the coefficient before "previous_cancellations" is +6.31 and the coefficient before "required_car_parking_spaces" is -13.9. This result shows the judgment logic of the DL model: people who have cancelled the order before have a higher probability of canceling this order and people who reserved parking spaces are less likely to cancel this order.
+
+<img src="../images/LIME.png" width="500" align="center">
+
+### 7) Summary
 
 In this task, it seems that **deep learning model can not beat the gradient boosting method**. There are some possible reasons. First, we know that deep learning model is more powerful when dealing with **unstructured data** such as images and text by extracting meaningful representations. However, in this task, all data is structured. Second, in such context, deep learning models need to adjust **more parameters** in order to get a better result. Among all the hyperparameters, the network structure is very important. However, due to insufficient computing power, **we fixed the network structure in advance**. Therefore, we may be trapped in a bad network structure at the beginning.
