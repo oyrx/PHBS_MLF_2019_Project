@@ -386,21 +386,20 @@ Results from multifold models, including traditional ML techniques and DL strate
 <!------------ 7 ------------>
 <h3 id="7">7. Conclusion</h3>
 
-This project several effective models to predict reservation cancellation. Among them, DART in LightGBM beat other competitors with highest testing accuracy (table) and also other metrics.  
+- This project uses several machine learning models to predict reservation cancellation. Among them, DART in LightGBM beat other competitors with highest testing accuracy (table) and also other metrics.  
+    
+  | Accuracy | Logistic Regression | Random Forest | LightGBM (DART) | XGBoost (GBDT) | ANN |
+  | ------------------- | ------------------- | ------------- | --------------- | -------------- | ----- |
+  | **Test** | 0.79433 | 0.8925 | 0.89614 | 0.89404 | 0.875 |  
+    
+  \* More metrics available previously at [\[1\]](#5.4) [\[2\]](#6.5).
   
-| Accuracy | Logistic Regression | Random Forest | LightGBM (DART) | XGBoost (GBDT) | ANN |
-| ------------------- | ------------------- | ------------- | --------------- | -------------- | ----- |
-| **Test** | 0.79433 | 0.8925 | 0.89614 | 0.89404 | 0.875 |  
-  
-\* More metrics available previously at [\[1\]](#5.4) [\[2\]](#6.5).
-  
-Results from our models also tally our supposition that time, place, actor, laws of normal transactions are killers in predicting such behaviors (`lead_time`, `adr`, `arrival_date_day_of_month`, `arrival_date_week_number`, `country`, `agent`).  
+- Results from our models also tally our supposition that time, place, actor, laws of normal transactions are killers in predicting such behaviors (`lead_time`, `adr`, `arrival_date_day_of_month`, `arrival_date_week_number`, `country`, `agent`).  
 
-Correspondingly, cancellation issue a hotel may face can be duly tackled by accelerating or rectifying business strategies using our effective and interpretable model.
+- Correspondingly, cancellation issue a hotel may face can be duly tackled by accelerating or rectifying business strategies using our effective and interpretable model.
 
-Learning from the practice and comparison of conventional machine learning models and a slightly overkilling deep learning technique (ANN), we may conclude our expirence as:
-
-**"Deep" is not always the "Jeep".**
+- Learning from the practice and comparison of conventional machine learning models and a slightly overkilling deep learning technique (ANN), we may conclude our experience as:
+  **"Deep" is not always the "Jeep".**
 
 
 [- Back to contents -](#c)
