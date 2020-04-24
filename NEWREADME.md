@@ -130,7 +130,7 @@ Gradient Boosted Decision Trees (GBDT) is a machine learning algorithm that iter
 
 **Why do we deliberately use those two similar, to some extend, boosting framework?** The first reason is that DART, a slightly different method, is also comprised in LightGBM, which would provide diversity for our potential model candidates. Second, XGBoost and LightGBM use discrepent tree growth strategies ( level-wise vs. leaf-wise) and the difference should not been ignored in finding the best hyper-parameters, especially when that level-wise leads to unexpected ramifications like over-fitting is literally a commonplace for professional data-scientists.
 
-<div align="center"><img src="../images/tree_growth.jpg" width="400"></div>
+<div align="center"><img src="./images/tree_growth.jpg" width="400"></div>
 
 We're curious about the nuances between [level-wise tree growth and leaf-wise tree growth](https://www.analyticsvidhya.com/blog/2017/06/which-algorithm-takes-the-crown-light-gbm-vs-xgboost/), thus, we decide to run both LightGBM and XGBoost.
 
@@ -195,7 +195,7 @@ With the help of scaffolding, those two modules and one customized grid search f
 
 - In order to improve computational performance, sub-sampling and limited cross validation folds are consecutively applied in the whole process.
 
-<div align="center"><img src="../images/LightGBM_04161347_cvresult.png"></div>
+<div align="center"><img src="./images/LightGBM_04161347_cvresult.png"></div>
 
 \* _Parameters ange were selected on previous training results and not continouous due to limited computation capacity_
 
@@ -237,7 +237,7 @@ Test(accuracy): 89.614%
 | macro avg    | 0.89      | 0.88   | 0.89     | 23878   |
 | weighted avg | 0.90      | 0.90   | 0.90     | 23878   |
 
-<div align="center"><img src="../images/LightGBM_04161347.png"></div>
+<div align="center"><img src="./images/LightGBM_04161347.png"></div>
 
 **Tree Based Model Plot of Best Model**  
 ![TreeLightGBM](../images/LighGBM_small.png) 
@@ -245,7 +245,7 @@ Test(accuracy): 89.614%
 
 **Feature importance in Best Model**
 
-<div align="center"><img src="../images/LightGBM_feature_importance.jpg"></div>
+<div align="center"><img src="./images/LightGBM_feature_importance.jpg"></div>
 
 ## 6. Deep learning model
 
@@ -271,7 +271,7 @@ Test(accuracy): 89.614%
 
 ### 3) Network structure
 
-<img src="C:/Users/Alex Gao/Desktop/ANN part/structure.png" width="700">
+<img src="./images/structure.png" width="700">
 
 * Input→1000→500→250→100→20→2
 * **Dropout** before doing **batch normalization**
@@ -287,7 +287,7 @@ It is a binary classification task, so we use **cross-entropy** as our loss func
 
 We use **random search** rather than grid search for hyperparameter tuning —— Randomly select **120** parameter combinations. The result is as follows: 
 
-<img src="C:/Users/Alex Gao/Desktop/ANN part/tune.png" width="600">
+<img src="./images/tune.png" width="600">
 
 The best parameters among these 120 combinations are:
 
@@ -301,11 +301,11 @@ The corresponding **validation loss** is 0.283972. The **validation accuracy** i
 
 At last, we use the hyperparameters from the last step and retrain the model on the whole training data (original training set + validation set). The learning process: 
 
-<img src="C:/Users/Alex Gao/Desktop/ANN part/retrain.png" width="600">
+<img src="./images/retrain.png" width="600">
 
 The test loss is  about 0.280 and test accuracy is about 0.875. Other performance metrics on test set:
 
-<img src="C:/Users/Alex Gao/Desktop/ANN part/pmetrics.png" width="500">
+<img src="./images/pmetrics.png" width="500">
 
 ### 6) Explainable deep learning model
 
@@ -317,7 +317,7 @@ At last, we want to make this deep learning model explainable in some sense. So 
 4. We choose **logisitic regression** as the simple model to explain the DL model locally —— Train the LR model on 5000 new "training data" in order to **mimic** the DL model's behavior locally. The accuracy is 98.86%.
 5. Finally, we get the coefficients before the numerical variables. It is worth noting that the coefficient before "previous_cancellations" is +6.31 and the coefficient before "required_car_parking_spaces" is -13.9. This result shows the judgment logic of the DL model: people who have cancelled the order before have a higher probability of canceling this order and people who reserved parking spaces are less likely to cancel this order.
 
-<img src="../images/LIME.png" width="500" align="center">
+<img src="./images/LIME.png" width="500" align="center">
 
 ### 7) Summary
 
