@@ -52,6 +52,7 @@ In order to explore, disentangle, and predict cancellation behavior, we initiali
 |       **Data**       | [Hotel booking demand](https://www.kaggle.com/jessemostipak/hotel-booking-demand) on Kaggle |
 |    **Data File**     |                     `hotel_bookings.csv`                     |
 | **Data Description** | This data set contains booking information for a city hotel and a resort hotel, and includes information such as when the booking was made, length of stay, the number of adults, children, and/or babies, and the number of available parking spaces, among other things. |
+
 [- Back to contents -](#c)
 
 <!--------------- 2 --------------->
