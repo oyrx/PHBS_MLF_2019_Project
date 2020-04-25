@@ -393,7 +393,7 @@ Results from multifold models, including traditional ML techniques and DL strate
 [- Back to contents -](#c)
 
 <!------------ 7 ------------>
-<h3 id="7">7. Conclusion</h3>
+<h2 id="7">7. Conclusion</h2>
 
 - This project uses several machine learning models to predict reservation cancellation. Among them, DART in LightGBM beats other competitors with highest testing accuracy (table) and also other metrics.  
     
