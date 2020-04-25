@@ -418,4 +418,56 @@
 	
 	Learning from the practice and comparison of conventional machine learning models and a slightly overkilling deep learning technique (ANN), we may conclude our experience as: \textbf{"Deep" is not always the "Jeep"}.
 	
+	\newpage
+
+	\noindent {\Large \textbf{Appendix A}}
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{p{4.5cm}p{8cm}}
+			\hline
+			\textbf{Feature} & \textbf{Meaning} \\ \hline
+			hotelHotel & H1 = Resort Hotel or H2 = City Hotel \\ \hline
+			lead\_time & Number of days that elapsed between the entering date of the booking into the PMS and the arrival date \\ \hline
+			arrival\_date\_year&  Year of arrival date\\ \hline
+			arrival\_date\_month&  Month of arrival date\\ \hline
+			arrival\_date\_week\_number&  Week number of year for arrival date\\ \hline
+			arrival\_date\_day\_of\_month&  Day of arrival date\\ \hline
+			stays\_in\_weekend\_nights&  Number of weekend nights (Saturday or Sunday) the guest stayed or booked to stay at the hotel\\ \hline
+			stays\_in\_week\_nights&  Number of week nights (Monday to Friday) the guest stayed or booked to stay at the hotel\\ \hline
+			adults&  Number of adults\\ \hline
+			children&   Number of children\\ \hline
+			babies&  Number of babies\\ \hline
+			meal& Type of meal booked. Categories are presented in standard hospitality meal packages: Undefined/SC 每 no meal package; BB 每 Bed \& Breakfast; HB 每 Half board (breakfast and one other meal 每 usually dinner); FB 每 Full board (breakfast, lunch and dinner) \\ \hline			
+			country& Country of origin. Categories are represented in the ISO 3155每3:2013 format \\ \hline
+			market\_segment&  Market segment designation. In categories, the term ※TA§ means ※Travel Agents§ and ※TO§ means ※Tour Operators§ \\ \hline
+			distribution\_channel& Booking distribution channel. The term ※TA§ means ※Travel Agents§ and ※TO§ means ※Tour Operators§ \\ \hline
+			is\_repeated\_guest& Value indicating if the booking name was from a repeated guest (1) or not (0) \\ \hline
+			previous\_cancellations& Number of previous bookings that were cancelled by the customer prior to the current booking \\ \hline
+			previous\_bookings\_not\_canceled& Number of previous bookings not cancelled by the customer prior to the current booking \\ \hline
+			reserved\_room\_type& Code of room type reserved. Code is presented instead of designation for anonymity reasons. \\ \hline
+		\end{tabular}
+	\end{table}
+
+	\newpage
+	
+		\begin{table}[H]
+		\centering
+		\begin{tabular}{p{4.5cm}p{8cm}}
+			\hline
+			\textbf{Feature} & \textbf{Meaning} \\ \hline
+			assigned\_room\_type& Code for the type of room assigned to the booking. Sometimes the assigned room type differs from the reserved room type due to hotel operation reasons (e.g. overbooking) or by customer request. Code is presented instead of designation for anonymity reasons. \\ \hline
+			booking\_changes& Number of changes/amendments made to the booking from the moment the booking was entered on the PMS until the moment of check-in or cancellation \\ \hline
+			deposit\_type& Indication on if the customer made a deposit to guarantee the booking. This variable can assume three categories: No Deposit 每 no deposit was made; Non Refund 每 a deposit was made in the value of the total stay cost; Refundable 每 a deposit was made with a value under the total cost of stay. \\ \hline
+			agent& ID of the travel agency that made the booking \\ \hline
+			company& ID of the company/entity that made the booking or responsible for paying the booking. ID is presented instead of designation for anonymity reasons \\ \hline
+         	days\_in\_waiting\_list& Number of days the booking was in the waiting list before it was confirmed to the customer \\ \hline
+         	customer\_type& Type of booking, assuming one of four categories: Contract - when the booking has an allotment or other type of contract associated to it; Group 每 when the booking is associated to a group; Transient 每 when the booking is not part of a group or contract, and is not associated to other transient booking; Transient-party 每 when the booking is transient, but is associated to at least other transient booking \\ \hline
+         	adr&  Average Daily Rate as defined by dividing the sum of all lodging transactions by the total number of staying nights\\ \hline
+         	required\_car\_parking\_spaces& Number of car parking spaces required by the customer \\ \hline
+         	total\_of\_special\_requests& Number of special requests made by the customer (e.g. twin bed or high floor) \\ \hline
+         	reservation\_status& Reservation last status, assuming one of three categories: Canceled 每 booking was canceled by the customer; Check-Out 每 customer has checked in but already departed; No-Show 每 customer did not check-in and did inform the hotel of the reason why \\ \hline
+         	reservation\_status\_date& Date at which the last status was set. This variable can be used in conjunction with the ReservationStatus to understand when was the booking canceled or when did the customer checked-out of the hotel \\ \hline
+		\end{tabular}
+	\end{table}	
 \end{document}

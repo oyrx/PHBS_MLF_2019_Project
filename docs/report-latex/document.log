@@ -1,7 +1,9 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2019.9.18)  25 APR 2020 12:14
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2019.9.18)  25 APR 2020 14:31
 entering extended mode
 **document.tex
-("C:\Users\Alex Gao\Desktop\report\document.tex"
+
+("C:\Users\Alex Gao\Desktop\Module3\Machine Learning for Finance\PHBS_MLF_2019_
+Project\docs\report-latex\document.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for loaded.
 (C:\CTEX\MiKTeX\tex\latex\paper\paper.cls
@@ -238,7 +240,8 @@ Invalid UTF-8 byte or sequence at line 13 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 13 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 13 replaced by U+FFFD.
 
-("C:\Users\Alex Gao\Desktop\report\document.aux"
+("C:\Users\Alex Gao\Desktop\Module3\Machine Learning for Finance\PHBS_MLF_2019_
+Project\docs\report-latex\document.aux"
 
 LaTeX Warning: Label `tab:02' multiply defined.
 
@@ -310,8 +313,10 @@ LaTeX Info: Redefining \ref on input line 33.
 LaTeX Info: Redefining \pageref on input line 33.
 LaTeX Info: Redefining \nameref on input line 33.
 
-("C:\Users\Alex Gao\Desktop\report\document.out")
-("C:\Users\Alex Gao\Desktop\report\document.out")
+("C:\Users\Alex Gao\Desktop\Module3\Machine Learning for Finance\PHBS_MLF_2019_
+Project\docs\report-latex\document.out")
+("C:\Users\Alex Gao\Desktop\Module3\Machine Learning for Finance\PHBS_MLF_2019_
+Project\docs\report-latex\document.out")
 \@outlinefile=\write3
 Requested font "cmr17" at 17.28pt
  -> cmr17
@@ -457,24 +462,86 @@ Overfull \hbox (1.4145pt too wide) in paragraph at lines 414--416
 , adr, ar-rival[]date[]day[]of[]month, ar-rival[]date[]week
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 421.
 [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 421.
- ("C:\Users\Alex Gao\Desktop\report\document.aux")
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 421.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 421.
+Requested font "cmbx12" at 14.4pt
+ -> cmbx12
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ° in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ± in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ° in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ± in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ° in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ± in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ° in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ± in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ° in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ± in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ° in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ± in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ° in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ± in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ° in font cmr10!
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ± in font cmr10!
+
+Overfull \hbox (9.01292pt too wide) in paragraph at lines 447--447
+[]\OT1/cmr/m/n/10 previous[]bookings[]not[]canceled| 
+ []
+
+[12]
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 473.
+
+Overfull \vbox (3.62617pt too high) has occurred while \output is active []
+
+
+[13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 473.
+
+("C:\Users\Alex Gao\Desktop\Module3\Machine Learning for Finance\PHBS_MLF_2019_
+Project\docs\report-latex\document.aux")
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 473.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 473.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6727 strings out of 430478
- 90673 string characters out of 3191502
+ 6729 strings out of 430478
+ 91046 string characters out of 3191502
  176658 words of memory out of 3000000
- 9818 multiletter control sequences out of 15000+200000
- 12629 words of font info for 43 fonts, out of 3000000 for 9000
+ 9819 multiletter control sequences out of 15000+200000
+ 12936 words of font info for 44 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  29i,11n,45p,600b,351s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on document.pdf (11 pages).
+Output written on document.pdf (13 pages).
