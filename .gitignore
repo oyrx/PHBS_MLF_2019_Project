@@ -45,4 +45,3 @@ geckodriver.log
 
 jupyterlab.bat
 tmp/*
-models/*
