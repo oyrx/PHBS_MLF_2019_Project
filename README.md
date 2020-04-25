@@ -1,6 +1,8 @@
 # Cancel or not? Predictive Analysis for Hotel Booking Data
 
-> PHBS_MLF_2019_Project: [Course Link](https://github.com/PHBS/MLF)
+> PHBS_MLF_2019_Project, [Course Link](https://github.com/PHBS/MLF)
+>
+> Report link: [project_report.pdf](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/docs/report-latex/document.pdf)
 
 <!--------------- contents --------------->
 <h2 id="c">Contents</h2>
