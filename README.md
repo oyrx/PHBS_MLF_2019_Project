@@ -1,9 +1,14 @@
 # Cancel or not? Predictive Analysis for Hotel Booking Data
 
-> PHBS_MLF_2019_Project, [Course Link](https://github.com/PHBS/MLF)
->
-> Report link: [project_report.pdf](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/docs/report-latex/document.pdf)
+This is a group project of [PHBS_MLF_2019](https://github.com/PHBS/MLF).
 
+## Navigation
+|Report |  Code   | Data & Model | 
+| ----- | --------- | ----------- | 
+|[📄 Report in PDF](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/docs/report-latex/document.pdf) |[Correlation and engineering](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/Corrleations_And_Feature_Engineering.ipynb) |  [Description](#1) | 
+| - |[Cleaning](https://raw.githubusercontent.com/oyrx/PHBS_MLF_2019_Project/master/code/data_cleaning.ipynb)     | [Train.csv](https://raw.githubusercontent.com/oyrx/PHBS_MLF_2019_Project/master/data/train.csv)  | 
+|     -      |[Baselines and trees](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/Modelling_LR_LightGBM_XGBoost_RandomForest.ipynb)     |[Test.csv](https://raw.githubusercontent.com/oyrx/PHBS_MLF_2019_Project/master/data/test.csv)  | 
+|    -      |[ANN](https://github.com/oyrx/PHBS_MLF_2019_Project/blob/master/code/ANN-part-code.ipynb)     | [Pretrained models](https://github.com/oyrx/PHBS_MLF_2019_Project_Models) |    
 <!--------------- contents --------------->
 <h2 id="c">Contents</h2>
 
